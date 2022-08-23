@@ -34,11 +34,12 @@ export const KNOWN_LANGUAGES = {
 
 export const SIDEBAR = {
 	en: [
-		{ text: '', header: true },
-		{ text: 'Section Header', header: true },
-		{ text: 'Introduction', link: 'the-mythic-age/en/introduction' },
-		{ text: 'Page 2', link: 'the-mythic-age/en/page-2' },
-		{ text: 'Page 3', link: 'the-mythic-age/en/page-3' },
+		{ text: 'Introduction', link: 'the-mythic-age/intro' },
+
+		{ text: 'The World', header: true },
+
+		{ text: 'Mechanics', header: true },
+		{ text: 'Character Creation', link: 'the-mythic-age/mechanics/character-creation' },
 
 		{ text: 'Weapons', header: true },
 		{ text: 'Mundane Weapons', link: 'the-mythic-age/weapons/mundane-weapons' },
