@@ -40,7 +40,18 @@ export const SIDEBAR = {
 		{ text: 'Page 2', link: 'the-mythic-age/en/page-2' },
 		{ text: 'Page 3', link: 'the-mythic-age/en/page-3' },
 
-		{ text: 'Another Section', header: true },
-		{ text: 'Page 4', link: 'the-mythic-age/en/page-4' },
+		{ text: 'Weapons', header: true },
+		{ text: 'Chimera Weapons', link: 'the-mythic-age/weapons/chimera-weapons' },
+		{ text: 'Dryad Weapons', link: 'the-mythic-age/weapons/dryad-weapons' },
+		{ text: 'Hydra Weapons', link: 'the-mythic-age/weapons/hydra-weapons' },
+		{ text: 'Karkhadan Weapons', link: 'the-mythic-age/weapons/karkhadan-weapons' },
+		{ text: 'Leucrotta Weapons', link: 'the-mythic-age/weapons/leucrotta-weapons' },
+		{ text: 'Manticore Weapons', link: 'the-mythic-age/weapons/manticore-weapons' },
+		{ text: 'Medusa Weapons', link: 'the-mythic-age/weapons/medusa-weapons' },
+		{ text: 'Roc Weapons', link: 'the-mythic-age/weapons/roc-weapons' },
+		{ text: 'Serpopard Weapons', link: 'the-mythic-age/weapons/serpopard-weapons' },
+		{ text: 'Siren Weapons', link: 'the-mythic-age/weapons/siren-weapons' },
+		{ text: 'Sphynx Weapons', link: 'the-mythic-age/weapons/sphynx-weapons' },
+
 	],
 };
