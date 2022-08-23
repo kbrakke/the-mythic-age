@@ -11,4 +11,5 @@ export default defineConfig({
 		react(),
 	],
 	site: `https://kbrakke.github.io/`,
+	base: `/the-mythic-age`,
 });
