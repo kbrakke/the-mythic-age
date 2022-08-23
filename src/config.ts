@@ -41,6 +41,7 @@ export const SIDEBAR = {
 		{ text: 'Page 3', link: 'the-mythic-age/en/page-3' },
 
 		{ text: 'Weapons', header: true },
+		{ text: 'Mundane Weapons', link: 'the-mythic-age/weapons/mundane-weapons' },
 		{ text: 'Chimera Weapons', link: 'the-mythic-age/weapons/chimera-weapons' },
 		{ text: 'Dryad Weapons', link: 'the-mythic-age/weapons/dryad-weapons' },
 		{ text: 'Hydra Weapons', link: 'the-mythic-age/weapons/hydra-weapons' },

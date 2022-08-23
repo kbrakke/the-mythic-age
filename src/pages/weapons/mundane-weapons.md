@@ -1,0 +1,126 @@
+---
+title: Mundane Weapons
+description: Mundane Weapon Information
+layout: ../../layouts/MainLayout.astro
+---
+# Weapons
+Weapons in the mythic age a built on top of one another. A simple axe can grow in to a fearsome "Scorching Winds" Labrys as you slay and harvest monster parts. Weapon progression is split in to five tiers, the first two are mundane weapons and represent weapon specialization. A longsword can be reforged in to the powerful Shotel, or the more precise Spatha. From there you can modify you weapon, customizing it to match your fighting style. The final three are magical weapons infused with the power and abilities of the monsters they are made of. Your Shotel can gain the power and strength of the Manticore, progressing through "Shooting Spikes", "Peircing Spikes" and finally "Mukhwzaq's Pinning Thorns" as you slay greater and greater monsters.
+
+## Weapon Properties
+
+Weapons in the Mythic Age can have a variety of properties, new ones are listed here.
+
+***Bone.*** When you score a critical hit you may deal additional damage equal to your proficiency bonus and gain an equal amount of temporary hit points. This can only be used on clubs, crystals, and staves.
+
+***Brutal.*** When rolling damage for a critical hit, if any damage dice roll their highest number you may roll an additional weapon damage die and add the result to your damage.
+
+***Cheap.*** This weapon may be upgraded to advanced or have modifications added for 1/10th of the price
+
+***Concealable.*** You have advantage on sleight of hand checks to conceal this weapon. This can only be used on light weapons or casting foci.
+
+***Cross Guard.*** +1 AC When not using a shield. Does not stack with another Crossguard.
+
+***Dense.*** When you score a critical hit, you may add your strength bonus to your damage an additional time.
+
+***Dual Head.*** When you would deal bludgeoning, slashing or piercing damage you may instead deal a different type of damage. This can only be used on weapons.
+
+***Empowering.*** When  you cast a spell using a higher spell slot, if the spell heals hit points or deals damage, increase that amount by the slot you used to cast the spell. This property can only be used on casting foci.
+
+***Fast.*** Drawing or stowing this weapon does not require an interaction with an object.
+
+***Keen.*** When you score a critical hit you can add your dexterity modifier (minimum 0) to the damage you deal. This can only be used on weapons.
+
+***Metal.*** When you deal damage with a spell you may add your proficiency bonus to that damage. Once you do you must complete a short rest before doing it again.
+
+***Penetrating.*** When you score a critical hit, you may add your proficiency bonus to the damage you deal.
+
+***Pummeling.*** When you score a critical hit, you may push the target 5 feet away.
+
+***Rejuvenating.*** When you heal another creature, you gain temporary hit points equal to the spell's level.
+
+***Sauroter.*** If you hit with an opportunity attack, creature's speed becomes 0 until your turn.
+
+***Unrelenting.*** When rolling damage for a critical hit, if any of your damage dice are a 1, you may roll one additional weapon damage die and add the result to your damage.
+
+***Volatile.*** If a spell you cast would deal Acid, Cold, Fire, Lightning, or Thunder damage, you may re-roll one of the damage dice taking the new result. This property can only be used on casting foci.
+
+***Weighted Haft.*** No penalty for ranged attacks beyond the first range increment.
+
+***Wood.*** When you heal hit points with a spell, you may add your proficiency bonus to that healing. Once you do so you must complete a short rest before doing it again.
+
+## Weapon Modifications
+Each weapon can be modified based on base type. Each weapon, unless stated otherwise may only have one modification applied to it. Adding a modification costs 100 gp and takes 1 day of work. Replacing a modification is the same cost and time.
+
+#### Weapon Modifications
+|Mod Name       | Effect                     | Base Weapons                          |
+|:-------------:|:--------------------------:|:-------------------------------------:|
+| Bone          | Add ***Bone.***            | Club, Crystal, Staff                  |
+| Concealable   | Add ***Concealable.***     | Dagger, Crystal, Short Sword, Staff   |
+| Cross Guard   | Add ***Cross Guard***      | Short Sword, Longsword, Dagger        |
+| Dense Head    | Add ***Dense.***           | Club, Hammer, Bow (Composite)         |
+| Dual Head     | Add ***Dual Head***        | Axe, Hammer, Spear                    |
+| Keen          | Add ***Keen***             | Axe, Dagger, Short Sword, Longsword   |
+| Metal         | Add ***Metal.***           | Crystal                               |
+| Recurve       | Increase Range by +50/+100 | Bow, Axe (Curved)                     |
+| Sauroter      | Add ***Sauroter.***        | Spear, Axe, Dagger                    |
+| Steel Tipped  | Add ***Penetrating.***     | Dagger, Longsword, Short Sword, Spear |
+| Weighted Haft | Add ***Weighted Haft***    | Bow, Axe, Spear                       |
+| Wood          | Add ***Wood.***            | Staff, Club                           |
+
+#### Basic Melee Weapons
+| Weapon Name | Cost  | Damage | Properties                            | Mods                                              |
+|:-----------:|:-----:|:------:|:-------------------------------------:|:-------------------------------------------------:|
+| Axe         | 10 gp | 1d8 s  | Versatile (1d10)                      | Dual Head, Keen, Recurve, Sauroter, Weighted Haft |
+| Club        | 1 sp  | 1d4 b  | Cheap (See Cost)                      | Bone, Dense Head, Wood                            |
+| Dagger      | 2 gp  | 1d4 p  | Finesse, light, thrown (range 20/60)  | Concealable, Cross Guard, Sauroter, Steel Tipped  |
+| Hammer      | 15 gp | 1d8 b  | Versatile (1d10)                      | Dense Head, Dual Head                             |
+| Longsword   | 15 gp | 1d8 s  | Versatile (1d10)                      | Cross Guard, Keen, Steel Tipped                   |
+| Short Sword | 10 gp | 1d6 s  | Finesse, light                        | Cross Guard, Concealable, Keen, Steel Tipped      |
+| Spear       | 1 gp  | 1d6 p  | Thrown (range 20/60), Versatile (1d8) | Dual Head, Sauroter, Steel Tipped, Weighted Haft  |
+
+#### Basic Ranged Weapons
+| Weapon Name | Cost  | Damage | Properties                            | Mods                                              |
+|:-----------:|:-----:|:------:|:-------------------------------------:|:-------------------------------------------------:|
+|Bow          | 25 gp | 1d6 p  | Ammunition (range 80/320), Two-Handed | Dense Head, Recurve, Weighted Haft                |
+
+#### Basic Casting Foci
+| Weapon Name | Cost  | Damage | Properties                            | Mods                                              |
+|:-----------:|:-----:|:------:|:-------------------------------------:|:-------------------------------------------------:|
+| Crystal     | 25 gp | -      | Volatile                              | Bone, Concealable, Metal                          |
+| Staff       | 25 gp | 1d6 b  | Empowering                            | Bone, Concealable, Wood                           |
+
+## Advanced Weapons
+
+#### Advanced Melee Weapons
+| Weapon Name | Base Weapon | Total Cost | Damage | Properties |
+|:-----------:|:-----------:|:----:|:------:|:---------:|
+Labrys| Axe | 60 gp | 1d12 s | Heavy, Two Handed
+Tabarzin| Axe | 60 gp | 1d8 s | Brutal, Versatile (1d10)
+Dolabra| Axe | 60 gp | 1d6 s | Light, Thrown (30/90)
+Pugio | Dagger | 52 gp | 1d4 p | Finesse, Light, Versatile (1d6)
+Khanjar| Dagger | 52 gp | 1d4 p | Fast, Finesse, Brutal, Light, Thrown (range 20/60)
+Maul| Hammer | 65 gp | 2d6 b | Heavy, Two-Handed
+Thrown Hammer| Hammer | 65 gp | 1d6 b | Light, Thrown (range 20/60)
+Warhammer | Hammer | 65 gp | 1d8 b | Versatile (1d10), Unrelenting
+Shotel | Longsword | 65 gp | 2d6 s | Two-Handed, Heavy
+Spatha | Longsword | 65 gp | 2d4 s | Versatile (1d6+1d4)
+Javelin| Spear | 51 gp | 1d6 p | Reach, Versatile (1d8), thrown (40/120)
+Doru | Spear | 51 gp | 1d8 p | Reach, Thrown (20/60), Versatile (Heavy, 1d10)
+Gladus | Shortsword | 60 gp | 1d6 s | Finesse, Versatile (1d8)
+Kopesh | Shortsword | 60 gp | 1d6 s | Fast, Finesse, Light
+Greatclub | Club | 5 gp | 1d6 b | Versatile (1d8), Cheap (See Cost)
+Quarterstaff | Club | 5 gp | 1d8 b | Heavy, Versatile (1d10), Cheap (See Cost)
+
+#### Advanced Ranged Weapons
+| Weapon Name | Base Weapon | Total Cost | Damage | Properties |
+|:-----------:|:-----------:|:----:|:------:|:---------:|
+|Short Bow| Bow |75 gp | 1d6 p | Ammunition (range 80/320), two-handed, fast |
+| Long Bow| Bow |75 gp | 1d8 p | Ammunition (range 150/600), two-handed |
+
+#### Advanced Casting Foci
+| Weapon Name | Base Weapon | Total Cost | Damage | Properties |
+|:-----------:|:-----------:|:----:|:------:|:---------:|
+| Amulet | Crystal | 75 gp | - | Volatile, Penetrating
+| Orb |Crystal | 75 gp | - | Volatile, Rejuvenating
+| Rod | Staff | 75 gp | 1d6 b | Empowering, Pummeling
+| Wand | Staff| 75 gp | 1d4 b | Empowering, Penetrating
