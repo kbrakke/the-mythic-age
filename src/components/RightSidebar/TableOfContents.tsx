@@ -1,7 +1,7 @@
 import type { FunctionalComponent } from 'preact';
 import { h, Fragment } from 'preact';
 import { useState, useEffect, useRef } from 'preact/hooks';
-import { MarkdownHeading } from 'astro';
+import type { MarkdownHeading } from 'astro';
 
 const TableOfContents: FunctionalComponent<{ headings: MarkdownHeading[] }> = ({
 	headings = [],

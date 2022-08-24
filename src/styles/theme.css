@@ -119,6 +119,26 @@ body {
 	--docsearch-modal-shadow: inset 0 0 8px #000;
 }
 
+:root.theme-fantasy {
+	color-scheme: fantasy;
+	--theme-accent: hsla(110, 96%, 89%, 0.4);
+	--theme-accent-opacity: 0.15;
+	--theme-text-accent: hsla(110, 96%, 89%, 0.4);
+	--theme-divider: hsla(9,  20%, 53%, 1);
+
+	--theme-text-lighter: hsla(209, 27%, 85%, 1);
+	--theme-bg: hsla(9, 20%, 53%, .5);
+	--theme-bg-hover: hsla(var(--color-gray-40), 1);
+	--theme-bg-offset: hsla(110, 96%, 89%, 1);
+	--theme-code-inline-bg: hsla(var(--color-gray-10), 1);
+	--theme-code-inline-text: hsla(var(--color-base-white), 100%, 1);
+	--theme-code-bg: hsla(var(--color-gray-5), 1);
+	--theme-code-text: hsla(var(--color-base-white), 100%, 1);
+	--theme-navbar-bg: hsla(9, 20%, 53%, .5);
+	--theme-selection-color: hsla(var(--color-base-white), 100%, 1);
+	--theme-selection-bg: hsla(9, 20%, 53%, 1);
+}
+
 ::selection {
 	color: var(--theme-selection-color);
 	background-color: var(--theme-selection-bg);
