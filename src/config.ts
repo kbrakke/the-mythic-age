@@ -37,6 +37,8 @@ export const SIDEBAR = {
 		{ text: 'Introduction', link: 'the-mythic-age/intro' },
 
 		{ text: 'The World', header: true },
+		{ text: 'Campaigns', header: true },
+		{ text: 'The Company of the Golden Lion', link: 'the-mythic-age/campaigns/the-cotgl' },
 
 		{ text: 'Mechanics', header: true },
 		{ text: 'Character Creation', link: 'the-mythic-age/mechanics/character-creation' },
