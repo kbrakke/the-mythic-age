@@ -44,12 +44,12 @@ Devrik is a long time Golden Lion member now in charge or onboarding new recruit
 - 💰 - Payout for this contract has been increased.
 - 👹 - You will receive monster parts
 - 🏺 - The Apolitain League is interested in this contract
+- ❌ - Blocked by other missions (In the sense that you can do whatever you would like, but the predicted consequences are not good)
+- 🔥 - Against the Cult of Tiamat
+- 🪙 - Maurkim is interested in this contact
+- 𓂀 - Na-Keb is interested in this contract
+- 🗳️ - Lycia is interested in this contract
 
-### Cult Activity - 🏺💰
-We have word of a contingent of Fire Cultists are headed north with a sizable chunk of gold. As best we can tell they are going with the blessing of the Fraternitus, and have a sizable amount of gold. The goal is simple, hijack the caravan and figure out where they were headed to with all that gold. The Caravan is about 22 strong, though we belive most of them are non-combatants. Caution is the name of the game, given that you'll only have a few days for the actual ambush before you're in Lycian territory and might have to deal with the local athorities too.
-
-### Plans and Ploys - 🏺
-With more information being uncovered about the Fraternitus Liberatus, determining what they are up to is a prime goal for Anicetus (Herald of Phonos). Hisperia has some intelligence on a semi-public meeting being held in Arkoz. She suggests posing as potential recruits to try and learn more.
 
 ### Where the Wild Things Grow - 👹
 A small village north of Theus has been having probems with diseased crops and agressive wildlife. they claim it started on the last full moon. As best as we can tell there are no groves nearby that they could have accidentally harmed, but in either case, it seems that there is a venguful dryad making their lives worse. This one is also Pro-Bono, but the chance at Dryad parts is well worth it.
@@ -59,3 +59,18 @@ A potential series of monster attacks on the western villages is of concern. And
 
 ### Free Roam: Sarmanian Mining Camp
 With the location of the Sarmanian mining camp known, at any point you can return. It’s clear they know about us and know we know about them. I have no idea what their long game is, but it can’t be good when Sarmnia is involved.
+
+### Defeat the Cult at Atlantis: ❌🔥
+We have a location and a dream. You could try to make your way out there blind in a rowboat I guess, but perhaps you should prepare. What do you mean invisible walls? I just said you could try... Oh, do you think that there are literally invisible walls protecting this base? Perhaps we should do some more research. Did you just say "Choo Choo?" I don't understand... 
+
+### Preperation: Assisst the Lycian Military 🗳️🔥
+In order to assist with the raid on the Atlantean base the Lycian military would like to extend their help, especially given how potentially destructive the cult seems to be. They have several cohorts who are unfortunately being tied up at the moment dealing with Giaus Marius Maximus. If you would be so kind as to help them slow the rate of attacks in the northern Lycian countryside, the would be able to free some troops up to help with your endeavors.
+
+### Preperation: Find a Route to Atlantis 🔥
+If it were simple to make your way out to Atlantis, everyone would do it. Frankly many of the current navigators don't believe it can be done, but we have a lead on Maurkim Scholar who might be able to help. Cadaan Carical works in Maruk, and has studied the stars and the seas his whole life. He has some unified theory that seems to touch on both, but our contact here assures us that he isn't completly crazy, and does in fact know mostly what he's talking about. Find him and convince him to join this crew.
+
+### Preperation: Rescude the Carical Merchants 🔥💰🪙
+The Company doesn't exactly have a fleet at our disposal, but we do have contacts. A member of the Carical familly reached out to us after they received a rather demanding note regarding their last shipment. In addition to your normal fare, they did offer use of a portion of their fleet, perhaps exactly enough to get us and a cohort of Lycian soldiers over to Atlantis. The message was to meet at fairly hidden grotto east of here. Unfortunately we've had a recent sighting of Thelixliapea, so the approach might be more dangerous than expected.
+
+### No Bone Unturned 𓂀 💰
+Well it looks like our spate of handling international cults has caught on and a few other nations are interested in our services again. Heknuhedjet, the court physican, holder of the pearl of life, keeper of the white wand etc. Has asked use to accompany a small force trying to recover any of Min's remains. It's been about a decade since they have been to the area, so no one is sure what could have changed since then. I'm guessing their worried if their hiring mercenaries on top of it. Or perhaps she's worried it's something the Board won't want the citizien to find... 
