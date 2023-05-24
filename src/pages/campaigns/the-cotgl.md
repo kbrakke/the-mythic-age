@@ -51,16 +51,16 @@ Devrik is a long time Golden Lion member now in charge or onboarding new recruit
 - 🗳️ - Lycia is interested in this contract
 
 
-### Where the Wild Things Grow - 👹
+### Where the Wild Things Grow 👹
 A small village north of Theus has been having probems with diseased crops and agressive wildlife. they claim it started on the last full moon. As best as we can tell there are no groves nearby that they could have accidentally harmed, but in either case, it seems that there is a venguful dryad making their lives worse. This one is also Pro-Bono, but the chance at Dryad parts is well worth it.
 
-### Follow Up: Pro-Bono - 👹
+### Follow Up: Pro-Bono 👹
 A potential series of monster attacks on the western villages is of concern. And while traveling south they would be met at Phonos, if they happened to go northeast, the devastation to the farmlands of Theria would be immense. If you can spare the time to investigate the status of the western swamps, we would appreciate intel on the scale of this potential monster threat. Given the legends of the Hydra of the Southern Swamp, I have a bad feeling about this...
 
-### Free Roam: Sarmanian Mining Camp
-With the location of the Sarmanian mining camp known, at any point you can return. It’s clear they know about us and know we know about them. I have no idea what their long game is, but it can’t be good when Sarmnia is involved.
+### Investigate: Former Sarmanian Mining Camp
+Scouts have reported the Sarmanian Mining Camp abandoned. Not even a token force is left to defend it. Tracks were found leading deeper in to the mountain. It's not clear if they found what they were seeking, or if they left. It would be ideal to get a proper team to investigate.
 
-### Defeat the Cult at Atlantis: ❌🔥
+### Defeat the Cult at Atlantis ❌🔥
 We have a location and a dream. You could try to make your way out there blind in a rowboat I guess, but perhaps you should prepare. What do you mean invisible walls? I just said you could try... Oh, do you think that there are literally invisible walls protecting this base? Perhaps we should do some more research. Did you just say "Choo Choo?" I don't understand... 
 
 ### Preperation: Assisst the Lycian Military 🗳️🔥
@@ -68,9 +68,6 @@ In order to assist with the raid on the Atlantean base the Lycian military would
 
 ### Preperation: Find a Route to Atlantis 🔥
 If it were simple to make your way out to Atlantis, everyone would do it. Frankly many of the current navigators don't believe it can be done, but we have a lead on Maurkim Scholar who might be able to help. Cadaan Carical works in Maruk, and has studied the stars and the seas his whole life. He has some unified theory that seems to touch on both, but our contact here assures us that he isn't completly crazy, and does in fact know mostly what he's talking about. Find him and convince him to join this crew.
-
-### Preperation: Rescude the Carical Merchants 🔥💰🪙
-The Company doesn't exactly have a fleet at our disposal, but we do have contacts. A member of the Carical familly reached out to us after they received a rather demanding note regarding their last shipment. In addition to your normal fare, they did offer use of a portion of their fleet, perhaps exactly enough to get us and a cohort of Lycian soldiers over to Atlantis. The message was to meet at fairly hidden grotto east of here. Unfortunately we've had a recent sighting of Thelixliapea, so the approach might be more dangerous than expected.
 
 ### No Bone Unturned 𓂀 💰
 Well it looks like our spate of handling international cults has caught on and a few other nations are interested in our services again. Heknuhedjet, the court physican, holder of the pearl of life, keeper of the white wand etc. Has asked use to accompany a small force trying to recover any of Min's remains. It's been about a decade since they have been to the area, so no one is sure what could have changed since then. I'm guessing their worried if their hiring mercenaries on top of it. Or perhaps she's worried it's something the Board won't want the citizien to find... 
