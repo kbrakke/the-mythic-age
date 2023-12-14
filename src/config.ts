@@ -1,6 +1,6 @@
 export const SITE = {
-	title: 'Documentation',
-	description: 'Your website description.',
+	title: 'The Mythic Age',
+	description: 'Resources for the Mythic Age.',
 	defaultLanguage: 'en_US',
 };
 
@@ -37,6 +37,8 @@ export const SIDEBAR = {
 		{ text: 'Introduction', link: 'the-mythic-age/intro' },
 
 		{ text: 'The World', header: true },
+		{ text: 'Maurkim', link: 'the-mythic-age/world/maurkim' },
+
 		{ text: 'Campaigns', header: true },
 		{ text: 'The Company of the Golden Lion', link: 'the-mythic-age/campaigns/the-cotgl' },
 

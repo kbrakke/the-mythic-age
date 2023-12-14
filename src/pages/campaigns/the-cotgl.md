@@ -63,11 +63,11 @@ Scouts have reported the Sarmanian Mining Camp abandoned. Not even a token force
 ### Defeat the Cult at Atlantis ❌🔥
 We have a location and a dream. You could try to make your way out there blind in a rowboat I guess, but perhaps you should prepare. What do you mean invisible walls? I just said you could try... Oh, do you think that there are literally invisible walls protecting this base? Perhaps we should do some more research. Did you just say "Choo Choo?" I don't understand... 
 
-### Preperation: Assisst the Lycian Military 🗳️🔥
-In order to assist with the raid on the Atlantean base the Lycian military would like to extend their help, especially given how potentially destructive the cult seems to be. They have several cohorts who are unfortunately being tied up at the moment dealing with Giaus Marius Maximus. If you would be so kind as to help them slow the rate of attacks in the northern Lycian countryside, the would be able to free some troops up to help with your endeavors.
-
 ### Preperation: Find a Route to Atlantis 🔥
 If it were simple to make your way out to Atlantis, everyone would do it. Frankly many of the current navigators don't believe it can be done, but we have a lead on Maurkim Scholar who might be able to help. Cadaan Carical works in Maruk, and has studied the stars and the seas his whole life. He has some unified theory that seems to touch on both, but our contact here assures us that he isn't completly crazy, and does in fact know mostly what he's talking about. Find him and convince him to join this crew.
 
 ### No Bone Unturned 𓂀 💰
 Well it looks like our spate of handling international cults has caught on and a few other nations are interested in our services again. Heknuhedjet, the court physican, holder of the pearl of life, keeper of the white wand etc. Has asked use to accompany a small force trying to recover any of Min's remains. It's been about a decade since they have been to the area, so no one is sure what could have changed since then. I'm guessing their worried if their hiring mercenaries on top of it. Or perhaps she's worried it's something the Board won't want the citizien to find... 
+
+### The Lumber Must Flow 💰
+A route leading from Politia to the Polemtoros has been very spotty lately. Supplies going to and from are growing sparser by the week and any of the crews that make it through report seeing older carts by the side of road abandoned. Some are able to be recovered, but just as often people who go to fetch them never return. At this point people aren't willing to take this route at any price and many of the lumberjacks have left, heading to other towns in Theus to try their luck. A group of mill owners have collected the funds to have us look in to the matter. Hopefully the problem is something more... corporeal.

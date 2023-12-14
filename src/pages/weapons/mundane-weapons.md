@@ -10,43 +10,62 @@ Weapons in the mythic age a built on top of one another. A simple axe can grow i
 
 Weapons in the Mythic Age can have a variety of properties, new ones are listed here.
 
-***Bone.*** When you score a critical hit you may deal additional damage equal to your proficiency bonus and gain an equal amount of temporary hit points. This can only be used on clubs, crystals, and staves.
+### ***Bone*** 
+When you score a critical hit you may deal additional damage equal to your proficiency bonus and gain an equal amount of temporary hit points. This can only be used on clubs, crystals, and staves.
 
-***Brutal.*** When rolling damage for a critical hit, if any damage dice roll their highest number you may roll an additional weapon damage die and add the result to your damage.
+### ***Brutal***
+When rolling damage for a critical hit, if any damage dice roll their highest number you may roll an additional weapon damage die and add the result to your damage.
 
-***Cheap.*** This weapon may be upgraded to advanced or have modifications added for 1/10th of the price
+### ***Cheap***
+This weapon may be upgraded to advanced or have modifications added for 1/10th of the price
 
-***Concealable.*** You have advantage on sleight of hand checks to conceal this weapon. This can only be used on light weapons or casting foci.
+### ***Concealable***
+You have advantage on sleight of hand checks to conceal this weapon. This can only be used on light weapons or casting foci.
 
-***Cross Guard.*** +1 AC When not using a shield. Does not stack with another Crossguard.
+### ***Cross Guard***
++1 AC When not using a shield. Does not stack with another Crossguard.
 
-***Dense.*** When you score a critical hit, you may add your strength bonus to your damage an additional time.
+### ***Dense***
+When you score a critical hit, you may add your strength bonus to your damage an additional time.
 
-***Dual Head.*** When you would deal bludgeoning, slashing or piercing damage you may instead deal a different type of damage. This can only be used on weapons.
+### ***Dual Head***
+When you would deal bludgeoning, slashing or piercing damage you may instead deal a different type of damage. This can only be used on weapons.
 
-***Empowering.*** When  you cast a spell using a higher spell slot, if the spell heals hit points or deals damage, increase that amount by the slot you used to cast the spell. This property can only be used on casting foci.
+### ***Empowering***
+When you cast a spell using a higher spell slot, if the spell heals hit points or deals damage, increase that amount by the slot you used to cast the spell. This property can only be used on casting foci.
 
-***Fast.*** Drawing or stowing this weapon does not require an interaction with an object.
+### ***Fast***
+Drawing or stowing this weapon does not require an interaction with an object.
 
-***Keen.*** When you score a critical hit you can add your dexterity modifier (minimum 0) to the damage you deal. This can only be used on weapons.
+### ***Keen***
+When you score a critical hit you can add your dexterity modifier (minimum 0) to the damage you deal. This can only be used on weapons.
 
-***Metal.*** When you deal damage with a spell you may add your proficiency bonus to that damage. Once you do you must complete a short rest before doing it again.
+### ***Metal***
+When you deal damage with a spell you may add your proficiency bonus to that damage. Once you do you must complete a short rest before doing it again.
 
-***Penetrating.*** When you score a critical hit, you may add your proficiency bonus to the damage you deal.
+### ***Penetrating***
+When you score a critical hit, you may add your proficiency bonus to the damage you deal.
 
-***Pummeling.*** When you score a critical hit, you may push the target 5 feet away.
+### ***Pummeling***
+When you score a critical hit, you may push the target 5 feet away.
 
-***Rejuvenating.*** When you heal another creature, you gain temporary hit points equal to the spell's level.
+### ***Rejuvenating***
+When you heal another creature, you gain temporary hit points equal to the spell's level.
 
-***Sauroter.*** If you hit with an opportunity attack, creature's speed becomes 0 until your turn.
+### ***Sauroter***
+If you hit with an opportunity attack, creature's speed becomes 0 until your turn.
 
-***Unrelenting.*** When rolling damage for a critical hit, if any of your damage dice are a 1, you may roll one additional weapon damage die and add the result to your damage.
+### ***Unrelenting***
+When rolling damage for a critical hit, if any of your damage dice are a 1, you may roll one additional weapon damage die and add the result to your damage.
 
-***Volatile.*** If a spell you cast would deal Acid, Cold, Fire, Lightning, or Thunder damage, you may re-roll one of the damage dice taking the new result. This property can only be used on casting foci.
+### ***Volatile***
+If a spell you cast would deal Acid, Cold, Fire, Lightning, or Thunder damage, you may re-roll one of the damage dice taking the new result. This property can only be used on casting foci.
 
-***Weighted Haft.*** No penalty for ranged attacks beyond the first range increment.
+### ***Weighted Haft***
+No penalty for ranged attacks beyond the first range increment.
 
-***Wood.*** When you heal hit points with a spell, you may add your proficiency bonus to that healing. Once you do so you must complete a short rest before doing it again.
+### ***Wood***
+When you heal hit points with a spell, you may add your proficiency bonus to that healing. Once you do so you must complete a short rest before doing it again.
 
 ## Weapon Modifications
 Each weapon can be modified based on base type. Each weapon, unless stated otherwise may only have one modification applied to it. Adding a modification costs 100 gp and takes 1 day of work. Replacing a modification is the same cost and time.
