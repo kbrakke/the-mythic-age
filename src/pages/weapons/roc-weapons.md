@@ -19,8 +19,8 @@ Roc weapons can be made from any Axe or Longsword type weapon.
 ## Fire Tree
 This weapon is imbued with the hot desert, echoing Simurgh, the Fire's Fury. Any additional damage dice gained from being a Roc weapon are fire damage instead of their normal type. This sword sheds bright light within 20 feet of it and dim light for an additional 20 feet.
 
-### Minor Infusion - Scorching Winds
-A Minor roc weapon gains an additional ability based it's weapon type.
+### Basic Infusion - Scorching Winds
+A roc weapon gains an additional ability based it's weapon type.
 
 #### Labrys & Shotel
 ***Heat Wave.*** As an action you can swing your axe causing an arc of fire to emanate in a 15 ft. cone from yourself. Creatures in the area must make a dexterity saving throw. A creature takes 3d6 fire damage on a failed save, half as much on a successful one. Additionally until the start of your next turn creatures have disadvantage on ranged attacks made through the area of your fire. Once this ability is used you must complete a short rest before using it again.
@@ -62,8 +62,8 @@ This weapon gains +2 to attack and damage rolls.
 ## Ice Tree
 This weapon is imbued with the chill wind of the cold mountain peaks echoing Skymoriax, the Icy Glare. Any additional weapon damage dice gained from being a roc weapon do cold damage instead of their normal type. Additionally the wielder can use an action to snuff any open flames within 20 feet of the wielder
 
-### Minor Infusion - Chilling Winds
-A Minor roc weapon gains an additional ability based it's weapon type.
+### Basic Infusion - Chilling Winds
+A roc weapon gains an additional ability based it's weapon type.
 
 #### Labrys & Shotel
 ***Wall of Ice.*** When you are hit by a ranged attack you can use your reaction to cause a 5 ft wide 10 ft tall sheet of ice to appear in an empty  space within five feet of you between you and the attacker. The attack instead misses you and hits the wall, and the wall lasts until the end of your next turn. The wall is 1 ft thick, has an AC of 15 and 30 hits points. It takes the damage from the attack. Once you use this ability you cannot use it again until you have completed a short rest.

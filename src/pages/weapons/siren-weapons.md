@@ -20,8 +20,8 @@ Your weapon can unleash a powerful psychic blast. As an action each creature in 
 
 A Stupor Weapons gains an additional ability based on its type
 
-### Minor Infusion - Disruption
-A Minor siren weapon gains an additional ability based it's weapon type.
+### Basic Infusion - Disruption
+A siren weapon gains an additional ability based it's weapon type.
 
 #### Gladus & Warhammer
 ***Psychic Repulsion.*** When you are the target of an attack roll from a creature you can see, you can use your reaction to cause a burst of psychic energy to emerge from this weapon disrupting foes. The attacker has disadvantage on its attack roll. 
@@ -35,7 +35,7 @@ A Minor siren weapon gains an additional ability based it's weapon type.
 ## Enchantment Tree
 Your weapon emits a subconscious tone, suffusing the air around it. Creatures are unaware of this tone unless under the effects of true sight or have other magic that would allow them to detect ethereal creatures. While a creature is in this aura you may add your proficiency bonus to any checks made to persuade or deceive them. If you would already add twice your proficiency bonus to this check, you instead gain advantage.
 
-### Minor Infusion - Charm
+### Basic Infusion - Charm
 
 #### Gladus & Warhammer.
 ***Inspiring Presence.*** Whenever you or a creature that can see or hear you must make an ability check or saving throw, you may spend your reaction to allow them to roll 1d8 and add the result to that check or saving throw. You may use this a number of times per day equal to your proficiency bonus.

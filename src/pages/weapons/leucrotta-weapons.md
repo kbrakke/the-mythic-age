@@ -18,7 +18,7 @@ When a creature succeeds on this saivng throw, as a reaction, you can spend a di
  2) Poisioned and Slowed
  3) Poisioned and Slowed. Vulnerable to all damage.
 
-### Minor Infusion - Infection
+### Basic Infusion - Infection
 #### Doru & Warhammer
 ***Virulence.*** Your disease die increases to 1d8. Additionally, whenever you hit a creature with one or more of your disease dice you may spend a number of them up to your proficiency bonus. Roll those dice, the creature takes necrotic damage equal to the result.
 
@@ -65,7 +65,7 @@ Your weapon gains a +2 to attack and damage rolls.
 ## Mimicry Tree
 You gain a number of mimicry dice equal to your proficiency bonus. Mimicry dice are d8's. Any spent mimicry dice are recovered after a long rest.
 Whenever you make a charisma check you may spend a mimicry die after you roll the d20, but before you know the result and add the number to the roll. 
-### Minor Infusion - Fascimillie
+### Basic Infusion - Fascimillie
 #### Doru & Warhammer
 ***Mirroring.*** You gain proficency in persuasion and deception. If you were already proficient in those skills, you may gain a new proficency instead. Additionally, after you have spoken to a creature for a minute or longer, you gain advantage on any charisma checks you make. 
 #### Javelin & Throwing Hammer

@@ -20,8 +20,8 @@ ___
 > ***Tail Spike.*** *Ranged Attack:* Proficiency Bonus + Dexterity Modifier to hit. 100/200 ft., one target. *Hit:* 1d8 + Dexterity Modifier piercing damage
 
 In addition, you may now choose modifications for ranged weapons.
-### Minor Infusion - Shooting Spikes
-A Minor manticore weapon gains an additional ability based it's weapon type.
+### Basic Infusion - Shooting Spikes
+A manticore weapon gains an additional ability based it's weapon type.
 
 #### Shotel & Gladus
 ***One-Two Punch.*** You may make one ***Tail Spike*** attack as a bonus action on your turn. If you hit a creature with this weapon, you do not have disadvantage on the attack roll against that creature if they are within five feet of you.
@@ -58,8 +58,8 @@ The manticore has three rows of sharp teeth, your blade is similarly serrated. H
 
 Once per turn, when you hit a creature with an attack using this magic weapon, you can wound the target. At the start of each of the wounded creature's turns, it takes 1d4 necrotic damage for each time you've wounded it, and it can then make a Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a Wisdom (Medicine) check, ending the effect of such wounds on it on a success.
 
-### Minor Infusion - Gnashing Teeth
-A Minor manticore weapon gains an additional ability based it's weapon type.
+### Basic Infusion - Gnashing Teeth
+A manticore weapon gains an additional ability based it's weapon type.
 
 #### Shotel & Gladus
 ***Deep Wounds.*** The damage die per wound increases to 1d6.

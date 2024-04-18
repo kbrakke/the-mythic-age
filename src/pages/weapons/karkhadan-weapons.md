@@ -11,12 +11,12 @@ I am the cycle of things. I am the passage of time. I am grrowth. I am entropy. 
 
 You gain the cure wounds spell if you do not already have it. You may pick Wisdom, Charisma or Intelligence to be your casting stat when you attune to this weapon. You may cast this spell a number of times per day equal to your proficiency bonus without expending a spell slot. Additionally when you cast the spell this way, you cast it at level 2 when you read 5th level and level 3 when you reach 10th level.
 
-### Minor Infusion
+### Basic Infusion
 #### Wand
 ***Oasis.*** When you heal a creature, choose another creature within 30 feet, that other creature regains hit points as if you rolled the minimum value on each of your dice.
 
 #### Rod
-***Wellspring.*** When you cause a creature to regain hit points, both you and that creature gain temporary hit points equal to your spell casting bonus. While a creature has these hitpoints you cannot be frightened.
+***Wellspring.*** When you cause a creature to regain hit points, both you and that creature gain temporary hit points equal to your spell casting bonus. While a creature has these hitpoints it cannot be frightened.
 
 ### Major Infusion
 You gain a +1 to spell attack rolls and healing rolls. 
@@ -44,7 +44,7 @@ I am the end of things. I am the passage of time. I am decay. I am entropy. All 
 
 You gain the Eldritch Blast Cantrip and the agonizing blast invocation if you do not already have them. If you already have either, you may pick a different warlock cantrip and/or invocation instead. You may pick Intelligence, Wisdom or Charisma to be your casting stat when you attune to this weapon, changing Agonizing blast to grant bonus damage based off of your selection.
 
-### Minor Infusion
+### Basic Infusion
 #### Wand
 ***Cull the Meek.*** Whenever you would cast a spell that targets any number of creatures, you may double that number by halving the size of the dice. 
 

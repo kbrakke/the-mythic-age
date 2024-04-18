@@ -8,7 +8,7 @@ layout: ../../layouts/MainLayout.astro
 
 ## Fate Tree
 Mortals move in this world governed by the same laws that make rocks fall, flowers bloom or the sun set. You are no more able to change your fate than the sun is able to stay hidden. These laws govern your existance, and you are now one of the few able to see the path that lies before you all.
-### Minor Infusion - Action
+### Basic Infusion - Action
 #### Wand
 ***Written In the Stars.*** You learn the ***Augury*** and ***Divination*** spells and may cast them each one per day without consuming a spell slot or material components. You never suffer any chance of a false reading for those spells. When you ask the question, the answer will be as actionable as possible.
 #### Rod
@@ -32,7 +32,7 @@ You gain the following two abilites:
 ## Free-Will Tree
 Mortals are gifted with an ability to do something most other creatures cannot do, make a choice. Your path is not one set in stone, etched in gold, cast in iron. Your path is ever flowing, ever changing. You can see the world is filled with blessed possibility, and you are now one of the few able to see beyond the veil, and witness the cosmic chaos.
 
-### Minor Infusion - Possibility
+### Basic Infusion - Possibility
 #### Wand
 #### Rod
 ### Major Infusion - Choice

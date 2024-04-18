@@ -40,7 +40,7 @@ From the east come the _Ardhadeva_, wispy humanoid creatures whose grace and lo
 ## The Five Nations
 
 ### **The Apolitain League** 
-The Apolitain League tries to represent moderation in all things. A collection of city- states founded by the major gods of the pantheon, the League operates as a representative democracy. The Judicial branch are the major gods themselves, with chosen champions acting as the executive branch. The legislative branch is made up of a mixture of minor local deities and elected representatives. To the Apolitains this is the perfect balance of all methods of rule.
+The Apolitain League tries to represent moderation in all things. A collection of city- states founded by the major gods of the pantheon, the League operates as a representative democracy. The Judicial branch are the major gods themselves, with chosen champions acting as the executive branch. The legislative branch is made up of a mixture of local deities and elected representatives. To the Apolitains this is the perfect balance of all methods of rule.
 
 The League conflicts with its neighbors. To the north, the border between the League and Lycia is ever shifting as each try to take a bit more land for themselves. This is further exacerbated by the prevalence of monsters in this region, making travel of all types risky. The league has additionally angered Maurkim. With the Apolitain league and several minotaur captains entering an agreement, the league has begun to gain ground as an international merchant. The established Maurkim houses dislike this new competition, and it’s becoming clear that the Maurkim tenant of fair competition only applies to fellow countrymen.
 
