@@ -37,12 +37,8 @@ export const SIDEBAR = {
 		{ text: 'Introduction', link: 'the-mythic-age/intro' },
 
 		{ text: 'The World', header: true },
-<<<<<<< HEAD
 		{ text: 'Maurkim', link: 'the-mythic-age/world/maurkim' },
-
-=======
 		{ text: 'Overview', link: 'the-mythic-age/world/world' },
->>>>>>> c9016cb (update docs)
 		{ text: 'Campaigns', header: true },
 		{ text: 'The Company of the Golden Lion', link: 'the-mythic-age/campaigns/the-cotgl' },
 		{ text: 'Seafaring Adventures', link: 'the-mythic-age/campaigns/seafarers' },
