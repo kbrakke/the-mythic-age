@@ -12,7 +12,7 @@ When you make an attack with this weapon you can spend a soul to imbue your arro
 
 ## Snake Tree
 ***Venom.*** Your weapon is imbued with the presence of the Medusa's mane. This weapon deals an additional 1d6 poison damage.
-### Minor Infusion- Snake's Fang
+### Basic Infusion- Snake's Fang
 #### Shortbow, Pugio & Quarterstaff
 ***Snake's Bite.*** After rolling damage with this weapon you can spend a soul you can re-roll any of your weapon damage dice (Including dice from critical hits and the poison tipped) showing 1 or 2
 
@@ -34,7 +34,7 @@ This weapon gains an additional +1 to attack and damage rolls, you gain an addit
 
 
 ## Gaze Tree
-### Minor Infusion - Harsh Glare
+### Basic Infusion - Harsh Glare
 ### Major Infusion - Petrifying Gaze
 ### Apex Infusion - Clytemnestra's Final Vision
 

@@ -22,7 +22,7 @@ Chimera Weapons have the following properties
 
 Chimera Weapons can be any Axe or Dagger weapon.
 ## Amalgam Tree
-### Minor Infusion - Amalgam
+### Basic Infusion - Amalgam
 This weapon morphs, taking on aspects of all manner of weaponry. When you first form your amalgam weapon pick an aspect from the following list.
 #### Aspects
 * ***Ram's Impact.*** when shoving you may push the creature an additional 10 feet. This includes when choosing to knock the creature prone.
@@ -47,8 +47,22 @@ You gain +2 to weapon attack and damage rolls. Additionaly, choose an additional
 ***Irkalian Form.*** While attuned your chimeric weapon, you gain advantage on saving throws to end effects on yourself at the end of your turn, you gain proficiency in constitution saving throws if you are not already and resistance to poison, necrotic and fire damage. Additionally, if you are below half of your hit points and hit a creature with your chimeric weapon, you may spend a hit die, roll it, and gain hit points equal to the result plus your con mod (min 0).
 
 ## Harmony Tree
-### Minor Infusion - Harmony
-This weapon has become a perfect union of the chimeric creatures. Choose three of the following creatures: Ram, Bull, Serpent, Lion, Ibis, or Leopard. You gain the Chimeric Form for each of the chosen creatres. Whenever you complete a short, long, or extended rest, or use a Chimeric Ability you may pick which from you manifest with your weapon. While a form is manifested you have its Chimeric M and may use it's Chimeric ability. Once a Chimeric Form's Chimeric Ability has been used, you may not manifest that form until you complete a long rest or extended rest. If you have used the Chimeric Ability for all of your Forms, you are no longer manifesting any Chimeric Manifestation until you complete long or extended rest.
+### Basic Infusion - Harmony
+This weapon has become a perfect union of the chimeric creatures. 
+
+Choose three of the following creatures 
+* Ram
+* Bull
+* Serpent
+* Lion
+* Ibis
+* Leopard. 
+
+You gain the Chimeric Form for each of the chosen creatres. Each Chimeric Form has a Chimeric Manifestation (A passive ability that it grants you when that form is manifest) and a Chimeric Ability (An action that you can use while you manifest that form). The Forms, Manifestations and Abilities are listed below.
+
+Whenever you complete a short, long, or extended rest, or use a Chimeric Ability you may pick which from you manifest with your weapon. While a form is manifested you have its Chimeric Manifestation and may use it's Chimeric ability. Once a Chimeric Form's Chimeric Ability has been used, you may not manifest that form until you complete a long rest or extended rest. If you have used the Chimeric Ability for all of your Forms, you are no longer manifesting any Chimeric Manifestation until you complete long or extended rest.
+
+When you gain a level, you may change one of your chosen forms for another. 
 
 #### Chimeric Forms
 ##### Bull

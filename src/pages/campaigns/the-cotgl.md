@@ -71,3 +71,5 @@ Well it looks like our spate of handling international cults has caught on and a
 
 ### The Lumber Must Flow 💰
 A route leading from Politia to the Polemtoros has been very spotty lately. Supplies going to and from are growing sparser by the week and any of the crews that make it through report seeing older carts by the side of road abandoned. Some are able to be recovered, but just as often people who go to fetch them never return. At this point people aren't willing to take this route at any price and many of the lumberjacks have left, heading to other towns in Theus to try their luck. A group of mill owners have collected the funds to have us look in to the matter. Hopefully the problem is something more... corporeal.
+
+## XP

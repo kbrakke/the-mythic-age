@@ -16,10 +16,10 @@ Hydra weapons have the following properties
 ## Northern Swarm Tree
 This weapon has a hoard of snapping heads reaching out from it, ready to harass your enemies.
 
-### Minor Infusion - Myriad Neck
+### Basic Infusion - Myriad Neck
 ***Even More Heads.*** You may target one more creature with your Lashing Heads, your weapon's die size is reduced by two (1d4 becomes 1d3, 1d3 becomes 1d2).
 
-A Minor hydra weapon gains an additional ability based its weapon type.
+A hydra weapon gains an additional ability based its weapon type.
 
 #### Shortbow & Doru
 ***Lurking Bite.*** Your additional attacks ignore cover.
@@ -62,7 +62,7 @@ An Apex Hydra weapon improves upon its abilities based on its weapon type
 
 This weapon is sturdy and well crafted. Any nick, scratch or break in this bow is repaired in seconds.
 
-### Minor Infusion - Regrowth
+### Basic Infusion - Regrowth
 
 ***Life Drain.*** When your additional attack hits, you gain temporary hit points equal to your level
 
