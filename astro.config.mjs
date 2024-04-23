@@ -1,15 +1,35 @@
 import { defineConfig } from 'astro/config';
-import preact from '@astrojs/preact';
-import react from '@astrojs/react';
+import starlight from '@astrojs/starlight';
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		// Enable Preact to support Preact JSX components.
-		preact(),
-		// Enable React for the Algolia search component.
-		react(),
-	],
-	site: `https://kbrakke.github.io/`,
-	base: `/the-mythic-age`,
+	integrations: [starlight({
+		title: 'The Mythic Age',
+		social: {
+			github: 'https://github.com/kbrakke/the-mythic-age'
+		},
+		sidebar: [
+			{
+				label: 'Campaigns',
+				autogenerate: {
+					directory: 'campaigns'
+				}
+			}, {
+				label: 'Character Options',
+				autogenerate: {
+					directory: 'resources'
+				}
+			}, {
+				label: 'Weapons',
+				autogenerate: {
+					directory: 'weapons'
+				}
+			}, {
+				label: 'World',
+				autogenerate: {
+					directory: 'world'
+				}
+			}]
+	}), react()]
 });
