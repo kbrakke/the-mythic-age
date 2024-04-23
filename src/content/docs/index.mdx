@@ -1,0 +1,19 @@
+---
+title: Welcome to The Mythic Age
+template: doc
+---
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import mythicAgeSplash from '../../assets/MythicAgeCollage-01.png';
+
+<Image src={mythicAgeSplash} alt="A collage of images for the Mythic Age." />
+<LinkCard
+  title="Character Creation"
+  description="Learn how to create a character in The Mythic Age."
+  href="/resources/character-creation/"
+/>
+
+<CardGrid>
+  <LinkCard title="Overview" href="/world/overview/" />
+  <LinkCard title="Weapons of the Mythic Age" href="/weapons/mundane-weapons/" />
+</CardGrid>
