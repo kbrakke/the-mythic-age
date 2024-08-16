@@ -4,6 +4,7 @@ description: Mundane Weapon Information
 ---
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import { GiPocketBow } from "react-icons/gi";
+import WeaponBuilder from "../../../components/weapon-builder.tsx";
 
 # Weapons
 Weapons in the mythic age a built on top of one another. A simple axe can grow in to a fearsome "Scorching Winds" Labrys as you slay and harvest monster parts. Weapon progression is split in to five tiers, the first two are mundane weapons and represent weapon specialization. A longsword can be reforged in to the powerful Shotel, or the more precise Spatha. From there you can modify you weapon, customizing it to match your fighting style. The final three are magical weapons infused with the power and abilities of the monsters they are made of. Your Shotel can gain the power and strength of the Manticore, progressing through "Shooting Spikes", "Peircing Spikes" and finally "Mukhwzaq's Pinning Thorns" as you slay greater and greater monsters.
@@ -57,6 +58,9 @@ When you heal another creature, you gain temporary hit points equal to the spell
 ### ***Sauroter***
 If you hit with an opportunity attack, creature's speed becomes 0 until your turn.
 
+### ***Sundering***
+You have advantage on Strength checks made to break objects with this weapon. This weapon deals maxium damage to objects.
+
 ### ***Unrelenting***
 When rolling damage for a critical hit, if any of your damage dice are a 1, you may roll one additional weapon damage die and add the result to your damage.
 
@@ -76,17 +80,17 @@ Each weapon can be modified based on base type. Each weapon, unless stated other
 |Mod Name       | Effect                     | Base Weapons                          |
 |:-------------:|:--------------------------:|:-------------------------------------:|
 | Bone          | Add ***Bone.***            | Club, Crystal, Staff                  |
-| Concealable   | Add ***Concealable.***     | Dagger, Crystal, Short Sword, Staff   |
+| Concealable   | Add ***Concealable***     | Dagger, Crystal, Short Sword, Staff   |
 | Cross Guard   | Add ***Cross Guard***      | Short Sword, Longsword, Dagger        |
-| Dense Head    | Add ***Dense.***           | Club, Hammer, Bow (Composite)         |
+| Dense Head    | Add ***Dense***           | Club, Hammer, Bow (Composite)         |
 | Dual Head     | Add ***Dual Head***        | Axe, Hammer, Spear                    |
 | Keen          | Add ***Keen***             | Axe, Dagger, Short Sword, Longsword   |
-| Metal         | Add ***Metal.***           | Crystal                               |
-| Recurve       | Increase Range by +50/+100 | Bow, Axe (Curved)                     |
-| Sauroter      | Add ***Sauroter.***        | Spear, Axe, Dagger                    |
-| Steel Tipped  | Add ***Penetrating.***     | Dagger, Longsword, Short Sword, Spear |
+| Metal         | Add ***Metal***           | Crystal                               |
+| Recurve       | Increase Range by +50/+100 | Bow, Axe (Curved Handle)              |
+| Sauroter      | Add ***Sauroter***        | Spear, Axe, Dagger                    |
+| Steel Tipped  | Add ***Penetrating***     | Dagger, Longsword, Short Sword, Spear |
 | Weighted Haft | Add ***Weighted Haft***    | Bow, Axe, Spear                       |
-| Wood          | Add ***Wood.***            | Staff, Club                           |
+| Wood          | Add ***Wood***            | Staff, Club                           |
 
 ## Basic Weapons
 <Tabs>
@@ -151,3 +155,7 @@ Each weapon can be modified based on base type. Each weapon, unless stated other
     | Wand | Staff| 75 gp | 1d4 b | Empowering, Penetrating
   </TabItem>
 </Tabs>
+
+## Weapon Builder
+
+<WeaponBuilder client:only="react" />
