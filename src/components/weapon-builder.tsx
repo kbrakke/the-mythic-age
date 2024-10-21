@@ -1,5 +1,5 @@
-import React from "react";
-import { FaCaretDown } from "react-icons/fa6";
+import React, { useState } from "react";
+import { FaFilter } from "react-icons/fa6";
 
 
 type WeaponInfo = {
@@ -73,6 +73,30 @@ type WeaponMod = {
   name: WeaponModsEnum,
   description: string,
 }
+
+const weaponModStringList: string[] = [
+  "BONE",
+  "BRUTAL",
+  "CHEAP",
+  "CONCEALABLE",
+  "CROSS_GUARD",
+  "DENSE",
+  "DUAL_HEAD",
+  "EMPOWERING",
+  "FAST",
+  "KEEN",
+  "METAL",
+  "PENETRATING",
+  "PUMMELING",
+  "REJUVENATING",
+  "RECURVE",
+  "SAUROTER",
+  "SUNDERING",
+  "UNRELENTING",
+  "VOLATILE",
+  "WEIGHTED_HAFT",
+  "WOOD",
+]
 
 const weaponMods: Map<WeaponModsEnum, WeaponMod> = new Map([
   [WeaponModsEnum.bone, {
@@ -171,8 +195,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     cost: 25,
     damage: "-",
     tree: SimpleWeapons.crystal,
-    properties: ["volatile"],
-    types: ["Simple", "Focus"],
+    properties: ["VOLATILE"],
+    types: ["SIMPLE", "FOCUS"],
     mods: [
       weaponMods.get(WeaponModsEnum.bone),
       weaponMods.get(WeaponModsEnum.concealable),
@@ -185,12 +209,12 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.staff,
     cost: 25,
     damage: "1d6 b",
-    properties: ["empowering"],
-    types: ["Simple", "Focus"],
+    properties: ["EMPOWERING"],
+    types: ["SIMPLE", "FOCUS"],
     mods: [
       weaponMods.get(WeaponModsEnum.bone),
       weaponMods.get(WeaponModsEnum.wood),
-      weaponMods.get(WeaponModsEnum.wood)
+      weaponMods.get(WeaponModsEnum.concealable)
     ]
   },
   {
@@ -199,8 +223,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.bow,
     cost: 25,
     damage: "1d6 p",
-    properties: ["Ammunition (range 80/320)", "Two-Handed"],
-    types: ["Simple", "Ranged"],
+    properties: ["AMMUNITION (range 80/320)", "TWO_HANDED"],
+    types: ["SIMPLE", "RANGED"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.recurve),
@@ -213,8 +237,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.axe,
     cost: 10,
     damage: "1d8 s",
-    properties: ["Versatile (1d10)"],
-    types: ["Simple", "Melee"],
+    properties: ["VERSATILE (1d10)"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.keen),
@@ -230,7 +254,7 @@ const simpleWeapons: Array<WeaponInfo> = [
     cost: 0.1,
     damage: "1d4 b",
     properties: ["Cheap (See Cost)"],
-    types: ["Simple", "Melee"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.bone),
       weaponMods.get(WeaponModsEnum.dense),
@@ -243,8 +267,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.dagger,
     cost: 2,
     damage: "1d4 p",
-    properties: ["Finesse", "Light", "Thrown (range 20/60)"],
-    types: ["Simple", "Melee"],
+    properties: ["FINESSE", "LIGHT", "THROWN (range 20/60)"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.concealable),
       weaponMods.get(WeaponModsEnum.crossGuard),
@@ -258,8 +282,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.hammer,
     cost: 15,
     damage: "1d8 b",
-    properties: ["Versatile (1d10)"],
-    types: ["Simple", "Melee"],
+    properties: ["VERSATILE (1d10)"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.dualHead),
@@ -272,8 +296,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.longsword,
     cost: 15,
     damage: "1d8 s",
-    properties: ["Versatile (1d10)"],
-    types: ["Simple", "Melee"],
+    properties: ["VERSATILE (1d10)"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.crossGuard),
       weaponMods.get(WeaponModsEnum.keen),
@@ -286,8 +310,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.shortSword,
     cost: 10,
     damage: "1d6 s",
-    properties: ["Finesse", "Light"],
-    types: ["Simple", "Melee"],
+    properties: ["FINESSE", "LIGHT"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.crossGuard),
       weaponMods.get(WeaponModsEnum.concealable),
@@ -301,8 +325,8 @@ const simpleWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.spear,
     cost: 1,
     damage: "1d6 p",
-    properties: ["Thrown (range 20/60)", "Versatile (1d8)"],
-    types: ["Simple", "Melee"],
+    properties: ["THROWN (range 20/60)", "VERSATILE (1d8)"],
+    types: ["SIMPLE", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.sauroter),
@@ -319,8 +343,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.axe,
     cost: 60,
     damage: "1d12 s",
-    properties: ["Heavy", "Two Handed"],
-    types: ["Advanced", "Melee"],
+    properties: ["HEAVY", "TWO_HANDED"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.keen),
@@ -335,8 +359,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.axe,
     cost: 60,
     damage: "1d8 s",
-    properties: ["Brutal", "Versatile (1d10)"],
-    types: ["Advanced", "Melee"],
+    properties: ["BRUTAL", "VERSATILE (1d10)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.keen),
@@ -351,8 +375,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.club,
     cost: 5,
     damage: "1d6 b",
-    properties: ["Versatile (1d8)", "Cheap (See Cost)"],
-    types: ["Advanced", "Melee"],
+    properties: ["VERSATILE (1d8)", "Cheap (See Cost)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.bone),
       weaponMods.get(WeaponModsEnum.dense),
@@ -365,8 +389,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.axe,
     cost: 60,
     damage: "1d6 s",
-    properties: ["Light", "Thrown (30/90)"],
-    types: ["Advanced", "Melee"],
+    properties: ["LIGHT", "THROWN (30/90)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.keen),
@@ -381,8 +405,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.dagger,
     cost: 52,
     damage: "1d4 p",
-    properties: ["Finesse", "Light", "Versatile (1d6)"],
-    types: ["Advanced", "Melee"],
+    properties: ["FINESSE", "LIGHT", "VERSATILE (1d6)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.concealable),
       weaponMods.get(WeaponModsEnum.crossGuard),
@@ -396,8 +420,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.dagger,
     cost: 52,
     damage: "1d4 p",
-    properties: ["Fast", "Finesse", "Brutal", "Light", "Thrown (range 20/60)"],
-    types: ["Advanced", "Melee"],
+    properties: ["FAST", "FINESSE", "BRUTAL", "LIGHT", "THROWN (range 20/60)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.concealable),
       weaponMods.get(WeaponModsEnum.crossGuard),
@@ -411,8 +435,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.hammer,
     cost: 65,
     damage: "2d6 b",
-    properties: ["Heavy", "Two Handed"],
-    types: ["Advanced", "Melee"],
+    properties: ["HEAVY", "TWO_HANDED"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.dualHead),
@@ -421,12 +445,12 @@ const advancedWeapons: Array<WeaponInfo> = [
   },
   {
     name: AdvancedWeapons.thrownHammer,
-    displayName: "Thrown Hammer",
+    displayName: "THROWN Hammer",
     tree: SimpleWeapons.hammer,
     cost: 65,
     damage: "1d6 b",
-    properties: ["Light", "Thrown (range 20/60)"],
-    types: ["Advanced", "Melee"],
+    properties: ["LIGHT", "THROWN (range 20/60)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.dualHead),
@@ -439,8 +463,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.hammer,
     cost: 65,
     damage: "1d8 b",
-    properties: ["Versatile (1d10)", "Unrelenting"],
-    types: ["Advanced", "Melee"],
+    properties: ["VERSATILE (1d10)", "UNRELENTING"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.dualHead),
@@ -453,8 +477,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.longsword,
     cost: 65,
     damage: "2d6 s",
-    properties: ["Two Handed", "Heavy"],
-    types: ["Advanced", "Melee"],
+    properties: ["TWO_HANDED", "HEAVY"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.crossGuard),
       weaponMods.get(WeaponModsEnum.keen),
@@ -467,8 +491,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.longsword,
     cost: 65,
     damage: "2d4 s",
-    properties: ["Versatile (1d6 + 1d4)"],
-    types: ["Advanced", "Melee"],
+    properties: ["VERSATILE (1d6 + 1d4)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.crossGuard),
       weaponMods.get(WeaponModsEnum.keen),
@@ -481,13 +505,13 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.spear,
     cost: 51,
     damage: "1d6 p",
-    properties: ["Reach", "Versatile (1d8)", "Thrown (range 40/120)"],
-    types: ["Advanced", "Melee"],
+    properties: ["REACH", "VERSATILE (1d8)", "THROWN (range 40/120)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.sauroter),
       weaponMods.get(WeaponModsEnum.penetrating),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
+      weaponMods.get(WeaponModsEnum.weightedHaft)
     ]
   },
   {
@@ -496,8 +520,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.spear,
     cost: 51,
     damage: "1d8 p",
-    properties: ["Reach", "Thrown (20/60)", "Versatile (Heavy, 1d10)"],
-    types: ["Advanced", "Melee"],
+    properties: ["REACH", "THROWN (20/60)", "VERSATILE (Heavy, 1d10)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.dualHead),
       weaponMods.get(WeaponModsEnum.sauroter),
@@ -511,8 +535,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.shortSword,
     cost: 60,
     damage: "1d6 s",
-    properties: ["Finesse", "Versatile (1d8)"],
-    types: ["Advanced", "Melee"],
+    properties: ["FINESSE", "VERSATILE (1d8)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.crossGuard),
       weaponMods.get(WeaponModsEnum.concealable),
@@ -526,8 +550,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.shortSword,
     cost: 60,
     damage: "1d6 s",
-    properties: ["Fast", "Finesse", "Light"],
-    types: ["Advanced", "Melee"],
+    properties: ["FAST", "FINESSE", "LIGHT"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.crossGuard),
       weaponMods.get(WeaponModsEnum.concealable),
@@ -541,8 +565,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.club,
     cost: 5,
     damage: "1d8 b",
-    properties: ["Heavy", "Versatile (1d10)", "Cheap (See Cost)"],
-    types: ["Advanced", "Melee"],
+    properties: ["HEAVY", "VERSATILE (1d10)", "Cheap (See Cost)"],
+    types: ["ADVANCED", "MELEE"],
     mods: [
       weaponMods.get(WeaponModsEnum.bone),
       weaponMods.get(WeaponModsEnum.dense),
@@ -555,8 +579,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.bow,
     cost: 75,
     damage: "1d6 p",
-    properties: ["Ammunition (range 80/320)", "Two-Handed", "Fast"],
-    types: ["Advanced", "Ranged"],
+    properties: ["AMMUNITION (range 80/320)", "TWO_HANDED", "FAST"],
+    types: ["ADVANCED", "RANGED"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.recurve),
@@ -569,8 +593,8 @@ const advancedWeapons: Array<WeaponInfo> = [
     tree: SimpleWeapons.bow,
     cost: 75,
     damage: "1d8 p",
-    properties: ["Ammunition (range 150/600)", "Two-Handed"],
-    types: ["Advanced", "Ranged"],
+    properties: ["AMMUNITION (range 150/600)", "TWO_HANDED"],
+    types: ["ADVANCED", "RANGED"],
     mods: [
       weaponMods.get(WeaponModsEnum.dense),
       weaponMods.get(WeaponModsEnum.recurve),
@@ -580,6 +604,14 @@ const advancedWeapons: Array<WeaponInfo> = [
 ]
 
 const weapons: Array<WeaponInfo> = simpleWeapons.concat(advancedWeapons);
+
+const weaponPropertiesStringList: string[] = weapons.flatMap((weapon) => weapon.properties)
+  .reduce((unique: string[], item: string) =>
+    unique.includes(item) ? unique : [...unique, item], []);
+
+const weaponTypesStringList: string[] = weapons.flatMap((weapon) => weapon.types)
+  .reduce((unique: string[], item: string) =>
+    unique.includes(item) ? unique : [...unique, item], []);
 
 type WeaponsBuilderFilter = {
   weaponName: string,
@@ -597,84 +629,271 @@ function weaponMatchesFilter(weapon: WeaponInfo, filter: WeaponsBuilderFilter): 
     (filter.weaponCost ? weapon.cost === filter.weaponCost : true) &&
     (filter.weaponTree ? weapon.tree === filter.weaponTree : true) &&
     (filter.weaponDamage ? weapon.damage === filter.weaponDamage : true) &&
-    (filter.weaponProperties ? weapon.properties.every((property) => filter.weaponProperties.includes(property)) : true) &&
-    (filter.weaponTypes ? weapon.types.every((type) => filter.weaponTypes.includes(type)) : true) &&
-    (filter.weaponMods ? weapon.mods.every((mod) => filter.weaponMods.includes(mod?.name || "")) : true)
+    (filter.weaponProperties
+      && filter.weaponProperties.length > 0
+      ? filter.weaponProperties.every((property) => weapon.properties.includes(property))
+      : true) &&
+    (filter.weaponTypes
+      && filter.weaponTypes.length > 0
+      ? filter.weaponTypes.every((type) => weapon.types.includes(type))
+      : true) &&
+    (filter.weaponMods
+      && filter.weaponMods.length > 0
+      ? weapon.mods.map((mod) => mod?.name).some((mod) => filter.weaponMods.includes(mod || ""))
+      : true)
+  )
+}
+
+function weaponModsFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): JSX.Element {
+  if (filter.weaponMods === undefined || filter.weaponMods.length == 0) {
+    return <div>Mods</div>
+  }
+  return (
+    <div className="flex">{
+      filter.weaponMods.map((mod) => {
+        return <button className="btn rounded-box" onClick={(e) => {
+          setFilter({
+            ...filter,
+            weaponMods: filter.weaponMods?.filter((m) => m != mod)
+          })
+        }}>{weaponEnumToString(mod)}</button>
+      })
+    }</div>
+  )
+}
+
+function weaponPropertiesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): JSX.Element {
+  if (filter.weaponProperties === undefined || filter.weaponProperties.length == 0) {
+    return <div>Properties</div>
+  }
+  return (
+    <div className="flex">{
+      filter.weaponProperties.map((property) => {
+        return <button className="btn rounded-box" onClick={(e) => {
+          setFilter({
+            ...filter,
+            weaponProperties: filter.weaponProperties?.filter((p) => p != property)
+          })
+        }}>{property}</button>
+      })
+    }</div>
+  )
+}
+
+function weaponTypesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): JSX.Element {
+  if (filter.weaponTypes === undefined || filter.weaponTypes.length == 0) {
+    return <div>Types</div>
+  }
+  return (
+    <div className="flex">{
+      filter.weaponTypes.map((type) => {
+        return <button className="btn rounded-box" onClick={(e) => {
+          setFilter({
+            ...filter,
+            weaponTypes: filter.weaponTypes?.filter((t) => t != type)
+          })
+        }}>{type}</button>
+      })
+    }</div>
   )
 }
 
 function modToHover(mod: WeaponMod | undefined): JSX.Element {
   if (!mod) {
-    return <div></div>
+    return <div key={"empty"}></div>
   }
   return (
-    <div className="dropdown dropdown-hover dropdown-right">
-      <div tabIndex={0} role="button" className="btn btn-ghost">{weaponEnumToString(mod.name)}</div>
-      <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-        <li className="menu-title">{mod.description}</li>
+    <div key={mod.name.toLowerCase()} className="dropdown dropdown-hover dropdown-left dropdown-top">
+      <div tabIndex={0} role="button" className="badge badge-outline m-1">{weaponEnumToString(mod.name)}</div>
+      <div tabIndex={0} className="dropdown-content menu bg-base-100 z-[1] w-52 p-2 shadow">
+        <div>{mod.description}</div>
       </div>
     </div>
   )
 }
 
-function WeaponsBuilder() {
-  const [weaponName, setWeaponName] = React.useState<String>();
-  const [filter, setFilter] = React.useState<WeaponsBuilderFilter>({} as WeaponsBuilderFilter);
+function NameFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
   return (
-    <div>
-      <table className="table table-zebra">
-        <thead>
-          <tr>
-            <th>
-            <label className="input input-bordered flex items-center gap-2">
-              <input type="text" className="grow" placeholder="Weapon Name" onChange={(e) => setFilter({
+    <div className="flex items-center">
+      <input
+        type="text"
+        placeholder="Name"
+        className="input input-bordered w-40 h-[48px] px-4 py-0"
+        value={filter.weaponName || ''}
+        onChange={(e) => setFilter({
+          ...filter,
+          weaponName: e.target.value.toLowerCase()
+        })}
+      />
+    </div>
+  );
+}
+
+function TreeFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
+  return (
+    <div className="dropdown dropdown-hover">
+      <label tabIndex={0} className="btn btn-outline w-34">
+        {filter.weaponTree ? weaponEnumToString(filter.weaponTree) : "Tree"}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+      </label>
+      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+        <div className="h-48 py-2 overflow-y-auto">
+          {Object.values(SimpleWeapons).map((tree) => (
+            <li key={tree}>
+              <a onClick={() => setFilter({ ...filter, weaponTree: tree as SimpleWeapons })}>{weaponEnumToString(tree)}</a>
+            </li>
+          ))}
+        </div>
+        <div className="border-t border-gray-200 dark:border-gray-600">
+          <li><a onClick={() => setFilter({ ...filter, weaponTree: undefined })}>Clear</a></li>
+        </div>
+      </ul>
+    </div>
+  );
+}
+
+function PropertiesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
+  return (
+    <div className="dropdown dropdown-hover">
+      <label tabIndex={0} className="btn btn-outline w-34">
+        Properties
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+      </label>
+      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+        <div className="h-48 py-2 overflow-y-auto">
+          {weaponPropertiesStringList.map((property) => (
+            <li key={property}>
+              <a onClick={() => setFilter({
                 ...filter,
-                weaponName: e.target.value.toLocaleLowerCase()
-              })}/>
-            </label>
-            </th>
-            <th>Cost</th>
-            <th>
-              <div className="dropdown dropdown-hover dropdown-right">
-                <div tabIndex={0} role="button" className="btn btn-ghost">Tree<FaCaretDown /></div>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                  {simpleWeapons.map((weapon) => {
-                    return (
-                      <li key={weapon.name} className="menu-title"><button className="btn btn-ghost" onClick={(e) => setFilter({
-                        ...filter,
-                        weaponTree: weapon.tree
-                      })}>{weaponEnumToString(weapon.tree)}</button></li>
-                    )
-                  })}
-                  {<li className="menu-title"><button className="btn btn-ghost" onClick={(e) => setFilter({
-                    ...filter,
-                    weaponTree: undefined
-                  })}>Clear</button></li>}
-                </ul>
-              </div>
-            </th>
-            <th>Damage</th>
-            <th>Properties</th>
-            <th>Types</th>
-            <th>Mods</th>
-          </tr>
-        </thead>
-        <tbody>
-          {weapons.filter((weapon) => weaponMatchesFilter(weapon, filter)).map((weapon) => {
-            return (
-              <tr key={weapon.name}>
-                <td>{weaponEnumToString(weapon.name)}</td>
-                <td>{weapon.cost}</td>
-                <td>{weaponEnumToString(weapon.tree)}</td>
-                <td>{weapon.damage}</td>
-                <td>{weapon.properties.join(", ")}</td>
-                <td>{weapon.types.join(", ")}</td>
-                <td>{weapon.mods?.map(mod => modToHover(mod))}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+                weaponProperties: (filter.weaponProperties ? [...filter.weaponProperties, property] : [property])
+              })}>{weaponEnumToString(property)}</a>
+            </li>
+          ))}
+        </div>
+        <div className="border-t border-gray-200 dark:border-gray-600">
+          <li><a onClick={() => setFilter({ ...filter, weaponProperties: [] })}>Clear</a></li>
+        </div>
+      </ul>
+    </div>
+  );
+}
+
+function TypesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
+  return (
+    <div className="dropdown dropdown-hover ">
+      <label tabIndex={0} className="btn btn-outline w-34">
+        Types
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+      </label>
+      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+        <div className="h-48 py-2 overflow-y-auto">
+          {weaponTypesStringList.map((type) => (
+            <li key={type}>
+              <a onClick={() => setFilter({
+                ...filter,
+                weaponTypes: (filter.weaponTypes ? [...filter.weaponTypes, type] : [type])
+              })}>{weaponEnumToString(type)}</a>
+            </li>
+          ))}
+        </div>
+        <div className="border-t border-gray-200 dark:border-gray-600">
+          <li><a onClick={() => setFilter({ ...filter, weaponTypes: [] })}>Clear</a></li>
+        </div>
+      </ul>
+    </div>
+  );
+}
+
+function ModsFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
+  return (
+    <div className="dropdown dropdown-hover ">
+      <label tabIndex={0} className="btn btn-outline w-34">
+        Mods
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+      </label>
+      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+        <div className="h-48 py-2 overflow-y-auto">
+          {weaponModStringList.map((name) => (
+            <li key={name}>
+              <a onClick={() => setFilter({
+                ...filter,
+                weaponMods: (filter.weaponMods ? [...filter.weaponMods, name] : [name])
+              })}>{weaponEnumToString(name)}</a>
+            </li>
+          ))}
+        </div>
+        <div className="border-t border-gray-200 dark:border-gray-600">
+          <li><a onClick={() => setFilter({ ...filter, weaponMods: [] })}>Clear</a></li>
+        </div>
+      </ul>
+    </div>
+  );
+}
+
+function WeaponCard({ weapon }: { weapon: WeaponInfo }) {
+  return (
+    <div tabIndex={0} className="collapse collapse-arrow border-base-300 bg-base-200 border">
+      <div className="collapse-title text-xl font-medium flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <span>{weapon.displayName}</span>
+          <span className="text-sm text-gray-500">({weaponEnumToString(weapon.tree)})</span>
+        </div>
+        <div className="flex items-center space-x-4">
+          <span className="badge badge-outline">{weapon.types.join(", ")}</span>
+          <span>{weapon.damage}</span>
+          <span>{weapon.cost} gp</span>
+        </div>
+      </div>
+      <div className="collapse-content">
+        <div className="mt-2">
+          <p><b>Properties:</b> {weapon.properties.map(p => weaponEnumToString(p)).join(", ")}</p>
+        </div>
+        <div className="mt-2">
+          <p><b>Available Mods:</b> {weapon.mods?.map(mod => modToHover(mod))}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WeaponsBuilder() {
+  const [filter, setFilter] = React.useState<WeaponsBuilderFilter>({} as WeaponsBuilderFilter);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const filteredWeapons = weapons.filter((weapon) => weaponMatchesFilter(weapon, filter));
+
+  return (
+    <div className="relative">
+      <div className="sticky top-0 z-10 bg-base-100 shadow-md">
+        <div className="flex justify-between items-center p-4">
+          <h1 className="text-2xl font-bold">Weapons</h1>
+          <button
+            className="btn btn-circle btn-outline"
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+          >
+            <FaFilter />
+          </button>
+        </div>
+        {isFilterOpen && (
+          <div className="p-4 bg-base-200 border-t border-b">
+            <div className="flex flex-wrap gap-2 items-center">
+              <span><NameFilter filter={filter} setFilter={setFilter} /></span>
+              <span><TreeFilter filter={filter} setFilter={setFilter} /></span>
+              <span><PropertiesFilter filter={filter} setFilter={setFilter} /></span>
+              <span><TypesFilter filter={filter} setFilter={setFilter} /></span>
+              <span><ModsFilter filter={filter} setFilter={setFilter} /></span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4">
+        <div className="space-y-2">
+          {filteredWeapons.sort((a, b) => a.name.localeCompare(b.name)).map((weapon) => (
+            <WeaponCard key={weapon.name} weapon={weapon} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
