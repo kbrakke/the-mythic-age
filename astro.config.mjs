@@ -33,6 +33,11 @@ export default defineConfig({
       autogenerate: {
         directory: 'world'
       }
+    }, {
+      label: 'Misc',
+      autogenerate: {
+        directory: 'misc'
+      }
     }]
   }), react(), tailwind(),astroExpressiveCode(), mdx()]
 });

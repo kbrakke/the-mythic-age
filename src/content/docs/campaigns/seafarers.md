@@ -4,7 +4,10 @@ description: Details on the Seafaring Campaign
 ---
 # Seafaring Adventurers
 
-## Characters
+A loose collection of former pirates turned merchant, a farm boy who just can't catch a break and an artificer hoping to learn the secrets of Atlantis. These Seafaring Adventurers have traveled the world on their ships, delving in to the briny depths of atlantis, making connections across Lycia and encountering horrors on the seas.
+
+
+## Dramatis Personae
 ### Enka Sokali Dornik Noraka Radolak
 A former pirate turned merchant, now seeking to regain her own ship and crew
 ### Enterop
