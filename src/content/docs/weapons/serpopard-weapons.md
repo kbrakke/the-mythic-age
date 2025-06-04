@@ -13,7 +13,7 @@ When you attune to this weapon, you gain the following
 * You gain 2 level one spells of your choice, their spell casting ability is the same as the one you picked for your cantrip. You may cast these spells a number of times per day equal to your proficiency bonus without expending a spell slot. You regain spent uses when you take a long rest. 
 ## Chaos Tree
 Serpopards are wild amalgamations of the natural order and chaotic forces, that mixture flows through you now.
-You gain the following
+You gain the following:
 
 ***Chaotic Surge.*** - After you cast a spell of 1st level or higher, roll a 1d20, on a 20 roll on the 2024 wild magic table, on a 1 roll on the 2nd edition wild magic table.
 ### Minor Infusion - 
@@ -21,24 +21,120 @@ You gain the following
 #### Orb - Minor Infusion
 ***Wild Magic Surge.*** When you cast a spell of first level or hither higher this weapon as a focus, you can choose to embrace chaos. Roll on the Wild Magic Surge table. You may replace your spell with the result of the roll, if you do not gain advantage on your next attack ability check or saving throw. Once you use this ability you cannot use it until you complete a breather rest.
 #### Amulet - Minor Infusion
-Chaos Storage Your amulet begins to collect wild magic energy. Whenever you cast a spell of 1st level or higher, you can choose to gain a chaos charge (maximum charges equal to your proficiency bonus). When you cast a spell, you can  
+***Chaos Storage.*** Your amulet begins to collect wild magic energy. Whenever you cast a spell of 1st level or higher, you can choose to gain a chaos charge (maximum charges equal to your proficiency bonus). When you cast a spell, you can spend chaos charges to mimc the following metamagic effects spending an equal number of chaos charges as sorcery points.
+- Careful Spell
+- Subtle Spell
+- Distant Spell
+- Empowered Spell
+Whenever you roll on the wild magic table, gain the maximum number of Chaos Points
 ### Major Infusion
+You gain a +1 to spell attack rolls and your spell save DC increases by 1. 
 #### Orb - Major Infusion 
-Chaotic Feedback You gain a +1 to spell attack rolls and your spell save DC increases by 1. When you roll on the Wild Magic Surge table, you can roll twice and choose which effect occurs. Additionally, harmful Wild Magic effects deal only half damage to you and your allies. 
+***Chaotic Feedback.*** When you roll on the Wild Magic Surge table, you can roll twice and choose which effect occurs. Additionally, harmful Wild Magic effects deal only half damage to you and your allies. 
 #### Amulet - Major Infusion
-Surge Shaper You gain a +1 to spell attack rolls and your spell save DC increases by 1. Your maximum chaos charges increases by 2. When you roll on the Wild Magic Surge table using charges, you can apply effects to specific targets within 30 feet instead of their normal targets. Additionally, when you would be forced to roll on a Wild Magic Surge table by another effect, you can spend a charge to reroll. 
+***Surge Shaper.*** Your maximum chaos charges increases by 2. When you roll on the Wild Magic Surge table after seeing the effect, you can spend 2 chaos charges to apply the effects to specific targets within 30 feet instead of their normal targets. In addition you can mimc the following metamagic effects.
+- Extend Spell
+- Heightened Spell
 ### Apex Infusion
-#### Orb - Apex Infusion
-Reality Unbound You gain a +2 to spell attack rolls and your spell save DC increases by 2. When you roll on the Wild Magic Surge table, you can choose to apply both effects. If they would conflict, you choose how they interact. Once per long rest, you can choose any result from the Wild Magic Surge table instead of rolling. 
-#### Amulet - Apex Infusion
-Chaos Weaver You gain a +2 to spell attack rolls and your spell save DC increases by 2. Your maximum chaos charges increases by 2. When you spend chaos charges, you can weave multiple effects together - for each additional charge spent beyond the first, you can combine one additional Wild Magic effect. These combinations follow your intent rather than causing havoc. Once per long rest, you can convert all your remaining charges into a controlled surge that exactly produces the wild magic effect you desire.
+You gain a +2 to spell attack rolls and your spell save DC increases by 2. 
+#### **Beyond the Edge**:
+Your weapon becomes a conduit for primordial chaos that existed before the gods imposed their order. You may use this ability Once. Ever.
+##### **Orb - Chaos Unbound**
+
+As an action, you shatter the barriers between order and chaos in a 60-foot radius emanating from you. For the next 10 minutes:
+
+- **Divine Dissolution**: All divine magic (cleric spells, paladin abilities, divine artifacts, etc.) has a 50% chance to trigger a roll on the Primal Chaos table instead of its intended effect
+- **Reality Cascade**: Whenever any spell is cast in the area, roll 1d6. On a 5-6, a secondary wild magic effect occurs at the same location (roll on wild magic table)
+- **God-Killer's Edge**: You can target divine beings (celestials, avatars, divine champions) with spells that normally couldn't affect them. Your spell attacks against such creatures automatically a wild magic surge. If that surge would target you, you may instead targer the divine.
+- **Primordial Surge**: If you would roll on a wild magic table, roll three times and apply all results simultaneously, interpreting contradictions in the most chaotic way possible
+##### **Amulet - The Void Crown**
+
+As an action, you crown yourself with anti-theistic chaos. For the next 10 minutes:
+
+- **Nullification Aura**: You and allies within 30 feet are immune to divine magic and effects. Divine healing becomes necrotic damage, blessings become curses, and divine commands fail
+- **Chaos Vampire**: Whenever a divine spell or ability is used within 120 feet, you gain chaos charges equal to the spell level (or 1 for abilities).
+- ***Chaos Unbound.*** You no longer have a limit to your chaos charges. This effect lasts forever.
+- **Entropic Feedback**: You can spend chaos charges as a reaction:
+	- 1 charge to force a re-roll of any d20
+	- 3 to negate the use of a legendary resistance
+	- 5 charges to temporarily sever a creature's connection to their deity for 1 minute
+- **The Final Heresy**: If you accumulate 20+ chaos charges while this is active, you can end the effect early to speak a Word of Unmaking. One divine effect, enchantment, or blessing within 1 mile permanently ends. This can affect the nature of divinity itself, though with great effort it is possible for a group of gods to undo this effort given enough time.
+##### **Manifestation Effects**
+When you activate Beyond the Edge, choose one:
+- Your form constantly shifts between states - solid, liquid, gaseous, and impossible geometries
+- You speak in tongues that predate divine language
+- Reality tears around you, showing glimpses of the primordial chaos before creation
+When Beyond the Edge ends, echoes of this will follow you, forever.
+##### **Backlash**
+
+After Beyond the Edge ends, roll 1d20:
+
+- 1-5: You are stunned for 1 minute as your mind processes the chaos
+- 6-10: You gain two levels of exhaustion
+- 11-15: You cannot cast spells for 1 hour
+- 16-19: You immediately trigger a wild magic surge
+- 20: The chaos is you - gain resistance to all damage for 1 hour
+#### Orb
+***Reality Unbound.*** When you roll on the Wild Magic Surge table you may roll a third time. You can choose to apply any number of the effects. If they would conflict, you choose how they interact. Once per long rest, you can choose any result from the Wild Magic Surge table instead of rolling. 
+#### Amulet
+***Chaos Weaver.*** Your maximum chaos charges increases by 2. When you spend chaos charges, you can weave multiple effects together - You may now use 2 metamagics on every spell. You additionally learn the last metamagics:
+- Quickened Spell
+- Twinned Spell
 ## Order Tree
+
+### Geometric Inscription 
+ The language of perfect geometric order sings through your weapon. Everywhere you see the inherent order in things. You can call upon this order and make manifest the energies of geometry. All Order tree weapons gain the following ability.
+
+**Geometric Inscription**: As a bonus action, you inscribe a glowing geometric shape within 30 feet that lasts for 1 minute. You can use this ability a number of times equal to your proficiency bonus, regaining all uses on a long rest. Additionally whenever you cast a spell of level 1 or higher, you can regain one use of your ***Geometric Inscription***
+
+- **Threshold Violation**: When a creature enters the shape's space for the first time on a turn or starts its turn there, it takes 2d6 force damage as it disrupts the sacred geometry
+- **Geometric Collapse**: As a bonus action, you can detonate any number of your shapes within 60 feet. Each shape deals 4d6 force damage to all creatures within 5 feet (DEX save for half)
+- Shapes glow faintly (dim light) and are visible to all
+- You always know if a shape has been crossed or remains unbroken
+- All creatures other than you treat shapes as difficult terrain
+#### Base Shapes (Available at all levels):
+
+- **Line**: 20 feet long, 5 foot wide
+- **Triangle**: 15-foot cone
+- **Square**: 10-foot sides
 ### Minor Infusion - 
-#### Orb
-#### Amulet
+#### Orb - Architect's Wrath
+- Your damage dice are d8s
+- When you detonate a shape that hasn't been crossed creatures near by have disadvantage on their saving throw
+#### Amulet - Sacred Boundary
+- Allies are immune to the damage from your shapes
+- Allies no longer treat your shapes as difficult terrain
+- If an ally is in the the blast radius of a shape when it detonates, it gains temporary hit points equal to half the damage roll
 ### Major Infusion
-#### Orb
-#### Amulet
+You gain a +1 to spell attack rolls and spell save DC.
+#### Additional Shapes:
+- **Circle**: 15-foot diameter
+- **Pentagon**: 10-foot diameter (measured to vertices)
+- **Square**: 15-foot side
+- **Triangle**: 20-foot cone
+- **Line**: 30-foot line
+#### Orb - Grand Architect
+- **Geometric Resonance**: When multiple shapes detonate simultaneously, each shape beyond the first adds +2d8 to the total damage
+- You can inscribe two shapes with a single bonus action
+#### Amulet- Sacred Fortress
+- **Geometric Cover**: Your shapes now rise 10 feet high and provide half cover to creatures behind them. Unbroken shapes provide three-quarters cover
+- **Harmonic Reinforcement**: When you detonate shapes, allies gain temporary hit points equal to the full damage rolled (instead of half)
 ### Apex Infusion
-#### Orb
-#### Amulet
+You gain a +2 to spell attack rolls and spell save DC.
+#### **Crystallization**
+Your understanding of perfect order grants you the following benefits:
+
+- **Crystal Clarity**: You can see the true mathematical nature of reality. You gain truesight out to 30 feet and can see the exact HP, AC, and saving throw bonuses of any creature you can see
+- **Inevitable Patterns**: Once per turn when you or an ally within 60 feet rolls a d20, if the result is the next number in sequence, e.g. the last roll was a 21, and this is a 22, you may treat it as a critical.
+- **Shatter Point**: Once per day, you can identify the precise geometric weakness in any structure, creature, or magical effect. Your next attack or spell against it is an automatic critical hit and ignores all resistances and immunities Structures do not gain any benefit from damage thresholds and take maximum damage, you have advantage on any checks and spells to end magical effects.
+### Additional Shapes:
+- **Hexagon**: 20-foot diameter
+- **Unique Shape** (see below)
+#### Orb - The Eternal Equation
+- **Instinctive Inscription**: When you take damage, you may use your reaction to inscribe a basic shape. 
+- **Cascading Collapse**: When you detonate shapes, you can choose to have the explosion create a new basic shape (line, triangle, or square) at the point of detonation
+- **Unique Shape - The Platonic Seal**: A complex three-dimensional dodecahedron (20-foot diameter sphere). Creatures inside take 2d8 force damage at the start of each turn. When detonated, it implodes then explodes, pulling all creatures within 30 feet 10 feet closer before dealing 8d8 force damage
+#### Amulet - The Divine Blueprint
+- **Living Architecture**: When you create shape, you may make it manifest. It becomes corporeal, providing full cover and have hit points equal to 10 × your proficiency bonus. They can be attacked (AC 16, Damage Threshold 10)
+- **Geometric Sanctuary**: Allies within your shapes gain advantage on all saving throws.
+- **Unique Shape - The Philosopher's Refuge**: A pyramid (20-foot square base, 15 feet high). Allies inside regain hit points equal to your proficiency bonus at the start of their turns. When detonated, instead of dealing damage, it creates a 30-foot cube of sanctuary that lasts for 1 minute - enemies cannot willingly enter, and allies inside gain the benefits of a short rest at the end of the duration. The sanctuary effect ends if any creature inside the area harms a creature outside of it. 
