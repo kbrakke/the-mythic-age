@@ -7,6 +7,7 @@ description: Serpopard Weapon Information
 ## Base Features
 Weapons made from Serpopards are sleek and sinuous, with an uncanny ability to move in ways that seem to defy their form.
 When you attune to this weapon, you gain the following 
+
 * The focus itself can morph and send out a sinuous tail. This tail acts as Mage Hand but it is entirely corporeal and connects back to your focus. It can fit through spaces as small as 1 inch, and if harmed instantly retracts with a yowl. It can exert up to 100 pounds of force and manipulate fine objects.
 * You gain resistance to poison damage
 * You gain a cantrip of your choice, you may pick wisdom, charisma or intelligence as your casting ability when you select it.
