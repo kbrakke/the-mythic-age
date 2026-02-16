@@ -15,3 +15,7 @@ Where Benny's loyalties lie is anyone's guess, but a lifetime of traveling the w
 A former detective, this Ardhadeva spends most of his time drinking and goofing. Don't let his unserious exterior fool you though, his fists are deadly up to any level of BAC
 ### Murrigan
 Another Ardhadeva, this time a lost trader. His devotion to Kali, as well as his time in Na-Keb has shown him many of the strange happenings. Now that he is free, he will need to decide what else this world has for him so far from home. 
+
+### Varrad
+Fleeing from Lycia as a mere child, raised in the Apolitain League and now working for Baltizar Carical in Maurkim, Varrad is a man of many places. Taciturn, steady, he is is the man you want at your side when negotiating the price for a night in the inn or facing down a Manticore.
+
