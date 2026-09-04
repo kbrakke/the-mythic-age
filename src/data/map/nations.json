@@ -5,7 +5,15 @@
     "color": "#b03cc8",
     "page": "/world/apolitain-league/",
     "summary": "A representative republic of god-championed city-states, balancing moderation in all things. Capital: Polita.",
-    "hexes": ["A23-A34", "B21-B34", "C21-C33", "D21-D32", "E20-E31", "F22-F30", "G28-G29"]
+    "hexes": [
+      "A23-A34",
+      "B21-B34",
+      "C22-C34",
+      "D22-D33",
+      "E22-E33",
+      "F24-F32",
+      "G31-G32"
+    ]
   },
   {
     "id": "lycia",
@@ -14,9 +22,28 @@
     "page": "/world/lycia/",
     "summary": "The former Pontinate Empire, now a pure democracy that killed its own gods twenty-five years ago. At total war with Sarmania over its northern colonies.",
     "hexes": [
-      "D33-D35", "E32-E35", "F31-F35", "G30-G35", "H32-H35", "I31-I35", "J32-J35", "K31-K35",
-      "L32-L35", "M32-M35", "N33-N35", "O33-O35", "P34-P35", "Q34",
-      "S32", "P30", "Q29", "R29", "S29", "S30", "T30", "T31"
+      "D34-D36",
+      "E34-E37",
+      "F33-F37",
+      "G33-G38",
+      "H35-H38",
+      "I35-I39",
+      "J36-J39",
+      "K36-K40",
+      "L37-L40",
+      "M38-M41",
+      "N39-N41",
+      "O40-O42",
+      "P41-P42",
+      "Q42",
+      "S41",
+      "P37",
+      "Q37",
+      "R37",
+      "S38",
+      "S39",
+      "T39",
+      "T40"
     ]
   },
   {
@@ -25,7 +52,13 @@
     "color": "#2f5fd0",
     "page": "/world/sarmania/",
     "summary": "A conquering theocratic empire ruled by Ereshkigal from the sky citadel Ganzir, a patchwork of feuding satraps. Capital: Ur-Nex.",
-    "hexes": ["P24-P29", "Q23-Q28", "R23-R28", "S22-S28", "T23-T29"]
+    "hexes": [
+      "P31-P36",
+      "Q31-Q36",
+      "R31-R36",
+      "S31-S37",
+      "T32-T38"
+    ]
   },
   {
     "id": "na-keb",
@@ -33,7 +66,18 @@
     "color": "#2fa84f",
     "page": "/world/na-keb/",
     "summary": "The oldest continuous civilisation in the world, a vast river bureaucracy ruled by a god-chosen Pharaoh. Capital: Ari-Maat.",
-    "hexes": ["K15-K18", "L13-L19", "M12-M19", "N11-N19", "O11-O19", "P11-P20", "Q11-Q19", "R11-R20", "S11-S19", "T11-T19"]
+    "hexes": [
+      "K20-K23",
+      "L18-L24",
+      "M18-M25",
+      "N17-N25",
+      "O18-O26",
+      "P18-P27",
+      "Q19-Q27",
+      "R19-R28",
+      "S20-S28",
+      "T20-T28"
+    ]
   },
   {
     "id": "maurkim",
@@ -41,6 +85,13 @@
     "color": "#d4a017",
     "page": "/world/maurkim/",
     "summary": "A trade empire of great houses built on trust, competition and back-room deals. Capital: Maruk.",
-    "hexes": ["A11-A17", "B11-B17", "C11-C17", "D11-D18", "E11-E18", "F11-F18"]
+    "hexes": [
+      "A11-A17",
+      "B11-B17",
+      "C12-C18",
+      "D12-D19",
+      "E13-E20",
+      "F13-F20"
+    ]
   }
 ]

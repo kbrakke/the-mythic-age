@@ -42,9 +42,13 @@ Requires Node 22.12 or newer.
 - **Linking to the map from a page:** `/world/map/#hex=F23`, `/world/map/#place=ostia`,
   `/world/map/#nation=lycia`.
 
-Hex ids use the row numbers printed on the *left* edge of the map (11 at the bottom, 35 at
-the top). The right edge of the printed map is numbered 1–25 instead; if you would rather use
-that numbering, change `BOTTOM_ROW` in `src/lib/hexgrid.ts` to `1` and renumber the data files.
+Hex ids follow the notation printed on the map: the column letter plus a **diagonal number**.
+The number is not a row: it names the diagonal that runs from the bottom edge up and to the
+left, and the numbers on the left edge of the map (11 at the bottom, 35 at the top) label
+those diagonals. In columns A and B the number reads like a row, and every two columns to the
+right it shifts up by one, so the top-right hex is T44. Switch on "Coordinate lines" on the map
+page to see the lines, or select a hex to get its crosshair. The maths lives in
+`src/lib/hexgrid.ts`.
 
 ## Styling notes
 

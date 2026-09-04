@@ -2,7 +2,7 @@
   {
     "id": "lycia-city",
     "name": "Lycia",
-    "hex": "F34",
+    "hex": "F36",
     "type": "capital",
     "nation": "lycia",
     "summary": "Capital of Lycia, seat of the People's Council and of Lycia herself, the first citizen."
@@ -10,7 +10,7 @@
   {
     "id": "godsfall",
     "name": "Godsfall",
-    "hex": "G34",
+    "hex": "G37",
     "type": "ruin",
     "nation": "lycia",
     "summary": "Where the Pontinate gods died twenty-five years ago. The countryside around it is still scarred."
@@ -18,35 +18,35 @@
   {
     "id": "sinope",
     "name": "Sinope",
-    "hex": "I35",
+    "hex": "I39",
     "type": "town",
     "nation": "lycia"
   },
   {
     "id": "nida",
     "name": "Nida",
-    "hex": "K35",
+    "hex": "K40",
     "type": "town",
     "nation": "lycia"
   },
   {
     "id": "brixia",
     "name": "Brixia",
-    "hex": "N34",
+    "hex": "N40",
     "type": "city",
     "nation": "lycia"
   },
   {
     "id": "maurina",
     "name": "Maurina",
-    "hex": "P34",
+    "hex": "P41",
     "type": "city",
     "nation": "lycia"
   },
   {
     "id": "ostia",
     "name": "Ostia",
-    "hex": "J32",
+    "hex": "J36",
     "type": "city",
     "nation": "lycia",
     "summary": "Lycia's great port on the Aqueor Maleficum."
@@ -54,21 +54,21 @@
   {
     "id": "shipyard-of-ostia",
     "name": "The Shipyard of Ostia",
-    "hex": "K31",
+    "hex": "K36",
     "type": "port",
     "nation": "lycia"
   },
   {
     "id": "achia",
     "name": "Achia",
-    "hex": "E32",
+    "hex": "E34",
     "type": "city",
     "nation": "lycia"
   },
   {
     "id": "medi",
     "name": "Medi",
-    "hex": "S32",
+    "hex": "S41",
     "type": "town",
     "nation": "lycia",
     "summary": "A Lycian colony on the northern shore, contested by Sarmania."
@@ -76,7 +76,7 @@
   {
     "id": "parti",
     "name": "Parti",
-    "hex": "P30",
+    "hex": "P37",
     "type": "town",
     "nation": "lycia",
     "summary": "A Lycian colony on the northern shore, contested by Sarmania."
@@ -84,7 +84,7 @@
   {
     "id": "nova-lycia",
     "name": "Nova Lycia",
-    "hex": "S29",
+    "hex": "S38",
     "type": "city",
     "nation": "lycia",
     "summary": "Chief city of the Lycian colonies, the front line of the war with Sarmania."
@@ -92,21 +92,21 @@
   {
     "id": "isinna",
     "name": "Isinna",
-    "hex": "T29",
+    "hex": "T38",
     "type": "city",
     "nation": "sarmania"
   },
   {
     "id": "eshunna",
     "name": "Eshunna",
-    "hex": "S28",
+    "hex": "S37",
     "type": "town",
     "nation": "sarmania"
   },
   {
     "id": "ur-nex",
     "name": "Ur-Nex",
-    "hex": "R27",
+    "hex": "R35",
     "type": "capital",
     "nation": "sarmania",
     "summary": "Capital of Sarmania, from which the Ten Divines spread Ereshkigal's rule."
@@ -114,7 +114,7 @@
   {
     "id": "ganzirs-port",
     "name": "Ganzir's Port",
-    "hex": "S26",
+    "hex": "S35",
     "type": "landmark",
     "nation": "sarmania",
     "summary": "Where the sky citadel Ganzir comes to ground."
@@ -122,14 +122,14 @@
   {
     "id": "apsus-port",
     "name": "Apsu's Port",
-    "hex": "P25",
+    "hex": "P32",
     "type": "port",
     "nation": "sarmania"
   },
   {
     "id": "kar-nergal",
     "name": "Kar Nergal",
-    "hex": "Q24",
+    "hex": "Q32",
     "type": "city",
     "nation": "sarmania"
   },
@@ -144,7 +144,7 @@
   {
     "id": "polita",
     "name": "Polita",
-    "hex": "C29",
+    "hex": "C30",
     "type": "capital",
     "nation": "apolitain-league",
     "summary": "Capital of the Apolitain League and seat of Polita, goddess of Civilisation, where the representatives meet."
@@ -152,7 +152,7 @@
   {
     "id": "asusa",
     "name": "Asusa",
-    "hex": "E27",
+    "hex": "E29",
     "type": "town",
     "nation": "apolitain-league"
   },
@@ -180,7 +180,7 @@
   {
     "id": "theria",
     "name": "Theria",
-    "hex": "C24",
+    "hex": "C25",
     "type": "city",
     "nation": "apolitain-league"
   },
@@ -195,7 +195,7 @@
   {
     "id": "arkoz",
     "name": "Arkoz",
-    "hex": "E22",
+    "hex": "E24",
     "type": "city",
     "nation": "apolitain-league"
   },
@@ -209,14 +209,14 @@
   {
     "id": "agoge-of-phonos",
     "name": "The Agoge of Phonos",
-    "hex": "C21",
+    "hex": "C22",
     "type": "landmark",
     "nation": "apolitain-league"
   },
   {
     "id": "techni",
     "name": "Techni",
-    "hex": "E20",
+    "hex": "E22",
     "type": "city",
     "nation": "apolitain-league",
     "summary": "Southern port of the League, facing Utim across the strait. A bridge between the two is under construction."
@@ -224,7 +224,7 @@
   {
     "id": "utim",
     "name": "Utim",
-    "hex": "E18",
+    "hex": "E20",
     "type": "city",
     "nation": "maurkim",
     "summary": "Maurkim's northern port, facing Techni across the strait."
@@ -232,14 +232,14 @@
   {
     "id": "precausa",
     "name": "Precausa",
-    "hex": "E17",
+    "hex": "E19",
     "type": "town",
     "nation": "maurkim"
   },
   {
     "id": "maruk",
     "name": "Maruk",
-    "hex": "E16",
+    "hex": "E18",
     "type": "capital",
     "nation": "maurkim",
     "summary": "Capital of Maurkim and home of the great houses."
@@ -247,7 +247,7 @@
   {
     "id": "grand-caravanasary",
     "name": "The Grand Caravanasary",
-    "hex": "F17",
+    "hex": "F19",
     "type": "landmark",
     "nation": "maurkim",
     "summary": "Where the desert caravans to Na-Keb begin."
@@ -255,34 +255,34 @@
   {
     "id": "midica",
     "name": "Midica",
-    "hex": "C14",
+    "hex": "C15",
     "type": "town",
     "nation": "maurkim"
   },
   {
     "id": "khasiba",
     "name": "Khasiba",
-    "hex": "D13",
+    "hex": "D14",
     "type": "city",
     "nation": "maurkim"
   },
   {
     "id": "the-gate",
     "name": "The Gate",
-    "hex": "I17",
+    "hex": "I21",
     "type": "landmark",
     "summary": "The desert gateway on the caravan road between Maurkim and Na-Keb."
   },
   {
     "id": "anmenu",
     "name": "Anmenu",
-    "hex": "J17",
+    "hex": "J21",
     "type": "town"
   },
   {
     "id": "ari-maat",
     "name": "Ari-Maat",
-    "hex": "M18",
+    "hex": "M24",
     "type": "capital",
     "nation": "na-keb",
     "summary": "Capital of Na-Keb, seat of the Pharaoh and the Board of Directors."
@@ -290,7 +290,7 @@
   {
     "id": "millenial-project",
     "name": "The Millenial Project",
-    "hex": "N18",
+    "hex": "N24",
     "type": "landmark",
     "nation": "na-keb",
     "summary": "Na-Keb's thousand-year work to master the great river."
@@ -298,14 +298,14 @@
   {
     "id": "anwamaat",
     "name": "Anwamaat",
-    "hex": "P19",
+    "hex": "P26",
     "type": "town",
     "nation": "na-keb"
   },
   {
     "id": "death-of-min",
     "name": "The Death of Min",
-    "hex": "R20",
+    "hex": "R28",
     "type": "ruin",
     "nation": "na-keb",
     "summary": "Where Ereshkigal deployed Ganzir and slew Min, God of the Desert."
@@ -313,83 +313,83 @@
   {
     "id": "cursed-city",
     "name": "The Cursed City (formerly Anmin)",
-    "hex": "S19",
+    "hex": "S28",
     "type": "ruin",
     "nation": "na-keb"
   },
   {
     "id": "tomb-of-the-first-pharaohs",
     "name": "Tomb of the First Pharaohs",
-    "hex": "O17",
+    "hex": "O24",
     "type": "landmark",
     "nation": "na-keb"
   },
   {
     "id": "anhet",
     "name": "Anhet",
-    "hex": "N16",
+    "hex": "N22",
     "type": "town",
     "nation": "na-keb"
   },
   {
     "id": "quarry-at-anhet",
     "name": "The Quarry at Anhet",
-    "hex": "N15",
+    "hex": "N21",
     "type": "landmark",
     "nation": "na-keb"
   },
   {
     "id": "pthekeb",
     "name": "Pthekeb",
-    "hex": "P15",
+    "hex": "P22",
     "type": "city",
     "nation": "na-keb"
   },
   {
     "id": "cynopolis",
     "name": "Cynopolis",
-    "hex": "S13",
+    "hex": "S22",
     "type": "city",
     "nation": "na-keb"
   },
   {
     "id": "anileh",
     "name": "Anileh",
-    "hex": "Q11",
+    "hex": "Q19",
     "type": "town",
     "nation": "na-keb"
   },
   {
     "id": "cradle-of-life",
     "name": "The Cradle of Life",
-    "hex": "K12",
+    "hex": "K17",
     "type": "landmark"
   },
   {
     "id": "mer-wirtor",
     "name": "Mer Wirtor",
-    "hex": "J22",
+    "hex": "J26",
     "type": "sea",
     "summary": "The Sea at the centre of the world, ringed by the five nations."
   },
   {
     "id": "aqueor-maleficum",
     "name": "Aqueor Maleficum",
-    "hex": "M31",
+    "hex": "M37",
     "type": "sea",
     "summary": "The strait between Lycia and the Sarmanian subcontinent."
   },
   {
     "id": "fire-mountain",
     "name": "The Volcano",
-    "hex": "J25",
+    "hex": "J29",
     "type": "landmark",
     "summary": "The volcanic island at the heart of Mer Wirtor."
   },
   {
     "id": "the-lixliapea",
     "name": "The Lixliapea",
-    "hex": "I21",
+    "hex": "I25",
     "type": "monster",
     "summary": "A dead, grey island in Mer Wirtor marked by a skull. Nothing good lives there."
   }

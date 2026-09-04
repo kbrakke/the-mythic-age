@@ -17,8 +17,8 @@ function expandHexRange(range: string): string[] {
 	if (!a || !b) throw new Error(`nations.json: "${range}" is not a hex on the map`);
 	if (a.col !== b.col) throw new Error(`nations.json: range "${range}" must stay within one column`);
 	const out: string[] = [];
-	for (let row = Math.min(a.row, b.row); row <= Math.max(a.row, b.row); row++) {
-		out.push(hexId({ col: a.col, row }));
+	for (let num = Math.min(a.num, b.num); num <= Math.max(a.num, b.num); num++) {
+		out.push(hexId({ col: a.col, num }));
 	}
 	return out;
 }

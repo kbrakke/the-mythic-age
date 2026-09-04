@@ -50,11 +50,18 @@ Every coordinate is expressed in **source-image pixels** (7105 × 10184). Leafle
 with a custom CRS so that one map unit equals one source pixel at the deepest zoom, which means
 the same numbers work at every zoom level and would keep working if the map were re-exported at
 the same size. The hex grid was measured from the printed edges: radius 221 px, column pitch
-331.5 px, row pitch 382.8 px, column A centred at x = 402.5, top row of odd columns at y = 594.5,
-even columns half a row higher.
+331.5 px, row pitch 382.8 px, column A centred at x = 402.5, top hex of odd columns at y = 594.5,
+even columns half a hex higher.
+
+Hex ids use the map's own notation: column letter plus a *diagonal* number. Diagonals run from
+the bottom edge up-left to the left edge, where the printed 11..35 labels name them. In code,
+`topNumber(col) = 35 + floor(col / 2)` and a hex's position within its column is
+`topNumber(col) - num`. Moving one column right and half a hex down keeps the number.
 
 Layers, from bottom to top: tiles → nation fills (multi-polygon of hexes, canvas renderer) →
-explored-hex highlights → optional grid + hex id labels → place markers → selection outline.
+explored-hex highlights → optional grid + hex id labels → coordinate lines (column and diagonal
+lines with letters/numbers at both ends) → place markers → selection outline plus the selected
+hex's column and diagonal as a crosshair.
 Clicking anywhere resolves the hex under the cursor with `pointToHex()`; markers stop
 propagation so a city click selects the place rather than the hex.
 

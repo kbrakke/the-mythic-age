@@ -1,5 +1,6 @@
 ---
-# Copy this file to <HEX>.md, e.g. F23.md. Files starting with _ are ignored.
+# Copy this file to <HEX>.md, e.g. F23.md (column letter + diagonal number, as printed on the
+# map). Files starting with _ are ignored.
 title: A name for the hex (optional; defaults to the hex id)
 terrain: plains | forest | mountains | desert | swamp | sea | ...
 campaign: Company of the Golden Lion

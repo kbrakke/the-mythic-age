@@ -16,11 +16,17 @@ import 'leaflet/dist/leaflet.css';
 import './WorldMap.css';
 import {
 	allHexes,
+	COLUMNS,
+	columnHexes,
+	diagonalHexes,
 	hexCenter,
 	hexCorners,
 	hexId,
+	lineThrough,
 	MAP_HEIGHT,
 	MAP_WIDTH,
+	MAX_NUMBER,
+	MIN_NUMBER,
 	parseHexId,
 	pointToHex,
 	type HexCoord,
@@ -82,6 +88,7 @@ interface Layers {
 	explored: L.LayerGroup;
 	grid: L.LayerGroup;
 	gridLabels: L.LayerGroup;
+	coords: L.LayerGroup;
 	places: L.LayerGroup;
 	highlight: L.LayerGroup;
 }
@@ -97,6 +104,7 @@ export default function WorldMap() {
 	const [showPlaces, setShowPlaces] = useState(true);
 	const [showExplored, setShowExplored] = useState(true);
 	const [showGrid, setShowGrid] = useState(false);
+	const [showCoords, setShowCoords] = useState(true);
 	const [zoom, setZoom] = useState(0);
 
 	// Lookups derived from the data.
@@ -149,6 +157,7 @@ export default function WorldMap() {
 			explored: L.layerGroup().addTo(map),
 			grid: L.layerGroup(),
 			gridLabels: L.layerGroup(),
+			coords: L.layerGroup().addTo(map),
 			places: L.layerGroup().addTo(map),
 			highlight: L.layerGroup().addTo(map),
 		};
@@ -160,6 +169,27 @@ export default function WorldMap() {
 				interactive: false,
 				icon: L.divIcon({ className: 'world-map__hex-label', html: hexId(coord), iconSize: [40, 12], iconAnchor: [20, 6] }),
 			}).addTo(layers.gridLabels);
+		}
+
+		// Coordinate lines: one per column (letter) and one per diagonal (number), labelled at
+		// both ends. A hex is where its column line and its diagonal line cross.
+		const coordLabel = (p: { x: number; y: number }, text: string, kind: 'col' | 'diag') =>
+			L.marker(toLatLng(p), {
+				interactive: false,
+				icon: L.divIcon({ className: `world-map__coord-label world-map__coord-label--${kind}`, html: text, iconSize: [28, 16], iconAnchor: [14, 8] }),
+			}).addTo(layers.coords);
+		for (let col = 0; col < COLUMNS.length; col++) {
+			const [a, b] = lineThrough(columnHexes(col), 0.9);
+			L.polyline([toLatLng(a), toLatLng(b)], { renderer: canvas, interactive: false, color: '#1d3557', weight: 1, opacity: 0.45, dashArray: '6 6' }).addTo(layers.coords);
+			coordLabel(a, COLUMNS[col], 'col');
+			coordLabel(b, COLUMNS[col], 'col');
+		}
+		for (let num = MIN_NUMBER; num <= MAX_NUMBER; num++) {
+			// Longer overshoot so the numbers sit outside the row of column letters.
+			const [a, b] = lineThrough(diagonalHexes(num), 1.5);
+			L.polyline([toLatLng(a), toLatLng(b)], { renderer: canvas, interactive: false, color: '#9d0208', weight: 1, opacity: 0.45 }).addTo(layers.coords);
+			coordLabel(a, String(num), 'diag');
+			coordLabel(b, String(num), 'diag');
 		}
 
 		map.on('click', (e: L.LeafletMouseEvent) => {
@@ -228,7 +258,8 @@ export default function WorldMap() {
 		sync(layers.explored, showExplored);
 		sync(layers.grid, showGrid);
 		sync(layers.gridLabels, showGrid && zoom >= LABEL_ZOOM);
-	}, [showNations, showPlaces, showExplored, showGrid, zoom]);
+		sync(layers.coords, showCoords);
+	}, [showNations, showPlaces, showExplored, showGrid, showCoords, zoom]);
 
 	// Place labels: capitals and cities always, other places once zoomed in.
 	useEffect(() => {
@@ -258,6 +289,13 @@ export default function WorldMap() {
 		const focusHex = (id: string, pan: boolean) => {
 			const coord = parseHexId(id);
 			if (!coord) return;
+			// Crosshair: the selected hex's column line and diagonal line, so it can be found
+			// from the letters and numbers on the map edges.
+			for (const run of [columnHexes(coord.col), diagonalHexes(coord.num)]) {
+				const [a, b] = lineThrough(run, 0.9);
+				L.polyline([toLatLng(a), toLatLng(b)], { interactive: false, color: '#fff', weight: 5, opacity: 0.8 }).addTo(layers.highlight);
+				L.polyline([toLatLng(a), toLatLng(b)], { interactive: false, color: '#e63946', weight: 2, opacity: 0.9 }).addTo(layers.highlight);
+			}
 			L.polygon(hexRing(coord), { interactive: false, color: '#fff', weight: 4, opacity: 1, fill: false }).addTo(layers.highlight);
 			L.polygon(hexRing(coord), { interactive: false, color: '#e63946', weight: 2, opacity: 1, fill: false }).addTo(layers.highlight);
 			if (pan) {
@@ -299,6 +337,7 @@ export default function WorldMap() {
 					<label><input type="checkbox" checked={showPlaces} onChange={(e) => setShowPlaces(e.target.checked)} /> Places</label>
 					<label><input type="checkbox" checked={showExplored} onChange={(e) => setShowExplored(e.target.checked)} /> Explored hexes</label>
 					<label><input type="checkbox" checked={showGrid} onChange={(e) => setShowGrid(e.target.checked)} /> Hex grid</label>
+					<label><input type="checkbox" checked={showCoords} onChange={(e) => setShowCoords(e.target.checked)} /> Coordinate lines</label>
 				</div>
 			</div>
 			<aside className="world-map__panel" aria-live="polite">
@@ -344,7 +383,7 @@ function Overview({ data, select }: { data: MapData; select: (s: Selection) => v
 		<>
 			<p className="world-map__kicker">The Mythic Age</p>
 			<h2>World map</h2>
-			<p>Click a city for details, or click any hex to see what is known about it. Zoom in and switch on the hex grid to read hex ids.</p>
+			<p>Click a city for details, or click any hex to see what is known about it. A hex id is its column letter plus the number of the diagonal running up-left through it; the coordinate lines show both, and selecting a hex draws its crosshair.</p>
 			<h3>Find</h3>
 			<input className="world-map__search" type="search" placeholder="Place name or hex id (e.g. F23)" value={query} onChange={(e) => setQuery(e.target.value)} />
 			{(matches.length > 0 || hexMatch) && (

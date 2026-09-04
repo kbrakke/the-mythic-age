@@ -50,6 +50,22 @@
 	white-space: nowrap;
 }
 
+/* Letters and numbers at the ends of the coordinate lines. */
+.world-map__coord-label {
+	pointer-events: none;
+	text-align: center;
+	font: 700 12px/16px ui-sans-serif, system-ui, sans-serif;
+	border-radius: 3px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.world-map__coord-label--col {
+	color: #1d3557;
+}
+.world-map__coord-label--diag {
+	color: #9d0208;
+}
+
 /* Place name labels. */
 .world-map__place-label {
 	background: rgba(255, 255, 255, 0.85);
