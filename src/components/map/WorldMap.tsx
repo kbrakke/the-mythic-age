@@ -186,7 +186,7 @@ export default function WorldMap() {
 		}
 		for (let num = MIN_NUMBER; num <= MAX_NUMBER; num++) {
 			// Longer overshoot so the numbers sit outside the row of column letters.
-			const [a, b] = lineThrough(diagonalHexes(num), 1.5);
+			const [a, b] = lineThrough(diagonalHexes(num), 2.2);
 			L.polyline([toLatLng(a), toLatLng(b)], { renderer: canvas, interactive: false, color: '#9d0208', weight: 1, opacity: 0.45 }).addTo(layers.coords);
 			coordLabel(a, String(num), 'diag');
 			coordLabel(b, String(num), 'diag');
