@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# generated map tiles (see scripts/build-map-tiles.mjs)
+public/map-tiles/
+public/vips-properties.xml

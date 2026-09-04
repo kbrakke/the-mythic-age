@@ -1,0 +1,10 @@
+---
+/**
+ * Thin wrapper so MDX pages can embed the map. Leaflet touches `window` when imported,
+ * so the React component must be a `client:only` island; importing it from an .astro
+ * file (rather than directly in MDX) keeps the module off the server entirely.
+ */
+import WorldMap from './WorldMap';
+---
+
+<WorldMap client:only="react" />

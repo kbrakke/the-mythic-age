@@ -1,0 +1,46 @@
+[
+  {
+    "id": "apolitain-league",
+    "name": "The Apolitain League",
+    "color": "#b03cc8",
+    "page": "/world/apolitain-league/",
+    "summary": "A representative republic of god-championed city-states, balancing moderation in all things. Capital: Polita.",
+    "hexes": ["A23-A34", "B21-B34", "C21-C33", "D21-D32", "E20-E31", "F22-F30", "G28-G29"]
+  },
+  {
+    "id": "lycia",
+    "name": "Lycia",
+    "color": "#e0245e",
+    "page": "/world/lycia/",
+    "summary": "The former Pontinate Empire, now a pure democracy that killed its own gods twenty-five years ago. At total war with Sarmania over its northern colonies.",
+    "hexes": [
+      "D33-D35", "E32-E35", "F31-F35", "G30-G35", "H32-H35", "I31-I35", "J32-J35", "K31-K35",
+      "L32-L35", "M32-M35", "N33-N35", "O33-O35", "P34-P35", "Q34",
+      "S32", "P30", "Q29", "R29", "S29", "S30", "T30", "T31"
+    ]
+  },
+  {
+    "id": "sarmania",
+    "name": "Sarmania",
+    "color": "#2f5fd0",
+    "page": "/world/sarmania/",
+    "summary": "A conquering theocratic empire ruled by Ereshkigal from the sky citadel Ganzir, a patchwork of feuding satraps. Capital: Ur-Nex.",
+    "hexes": ["P24-P29", "Q23-Q28", "R23-R28", "S22-S28", "T23-T29"]
+  },
+  {
+    "id": "na-keb",
+    "name": "Na-Keb",
+    "color": "#2fa84f",
+    "page": "/world/na-keb/",
+    "summary": "The oldest continuous civilisation in the world, a vast river bureaucracy ruled by a god-chosen Pharaoh. Capital: Ari-Maat.",
+    "hexes": ["K15-K18", "L13-L19", "M12-M19", "N11-N19", "O11-O19", "P11-P20", "Q11-Q19", "R11-R20", "S11-S19", "T11-T19"]
+  },
+  {
+    "id": "maurkim",
+    "name": "Maurkim",
+    "color": "#d4a017",
+    "page": "/world/maurkim/",
+    "summary": "A trade empire of great houses built on trust, competition and back-room deals. Capital: Maruk.",
+    "hexes": ["A11-A17", "B11-B17", "C11-C17", "D11-D18", "E11-E18", "F11-F18"]
+  }
+]

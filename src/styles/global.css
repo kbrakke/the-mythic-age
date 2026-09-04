@@ -16,3 +16,12 @@
   prefix: d-;
   include: button, badge, collapse, dropdown, input, menu, range, label, loading, card, join;
 }
+
+/* The world map page uses the full width of the viewport. */
+.main-pane:has(.world-map) .sl-container {
+	max-width: none;
+}
+.world-map-help {
+	font-size: var(--sl-text-xs);
+	color: var(--sl-color-gray-3);
+}

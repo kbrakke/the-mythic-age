@@ -8,7 +8,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "map:tiles": "node scripts/build-map-tiles.mjs",
+    "prebuild": "node scripts/build-map-tiles.mjs",
+    "predev": "node scripts/build-map-tiles.mjs --if-missing"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -21,6 +24,7 @@
     "@types/react-dom": "^19.2.7",
     "astro": "^7.3.1",
     "framer-motion": "^13.2.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^1.41.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -30,6 +34,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.22",
     "daisyui": "^5.7.28",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1"

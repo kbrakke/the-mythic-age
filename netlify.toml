@@ -1,0 +1,9 @@
+[build]
+  # `npm run build` runs the `prebuild` script first, which slices the world map into
+  # tiles (public/map-tiles/, not committed) before Astro builds the site.
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Astro 7 needs Node 22.12 or newer.
+  NODE_VERSION = "22"

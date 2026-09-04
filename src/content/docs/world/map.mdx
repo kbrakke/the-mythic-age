@@ -1,7 +1,14 @@
 ---
 title: World Map
+description: Interactive hex map of the Mythic Age. Click nations, cities and hexes to see what is known about them.
+template: splash
+tableOfContents: false
 ---
-import worldMap from '../../../assets/WorldMap-01.png'
-import { Image } from 'astro:assets';
+import WorldMapIsland from '../../../components/map/WorldMapIsland.astro';
 
-<Image src={worldMap} alt="The Mythic Age World Map"/>
+<WorldMapIsland />
+
+<p class="world-map-help">
+  Link to a spot on the map with <code>/world/map/#hex=F23</code>, <code>#place=ostia</code> or <code>#nation=lycia</code>.
+  Explored hexes come from markdown files in <code>src/content/hexes/</code>; cities and borders from <code>src/data/map/</code>.
+</p>
