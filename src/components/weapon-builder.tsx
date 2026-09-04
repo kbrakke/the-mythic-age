@@ -644,14 +644,14 @@ function weaponMatchesFilter(weapon: WeaponInfo, filter: WeaponsBuilderFilter): 
   )
 }
 
-function weaponModsFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): JSX.Element {
+function weaponModsFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): React.JSX.Element {
   if (filter.weaponMods === undefined || filter.weaponMods.length == 0) {
     return <div>Mods</div>
   }
   return (
     <div className="flex">{
       filter.weaponMods.map((mod) => {
-        return <button className="btn rounded-box" onClick={(e) => {
+        return <button className="d-btn rounded-[var(--radius-box)]" onClick={(e) => {
           setFilter({
             ...filter,
             weaponMods: filter.weaponMods?.filter((m) => m != mod)
@@ -662,14 +662,14 @@ function weaponModsFilterToButtons(filter: WeaponsBuilderFilter, setFilter: Reac
   )
 }
 
-function weaponPropertiesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): JSX.Element {
+function weaponPropertiesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): React.JSX.Element {
   if (filter.weaponProperties === undefined || filter.weaponProperties.length == 0) {
     return <div>Properties</div>
   }
   return (
     <div className="flex">{
       filter.weaponProperties.map((property) => {
-        return <button className="btn rounded-box" onClick={(e) => {
+        return <button className="d-btn rounded-[var(--radius-box)]" onClick={(e) => {
           setFilter({
             ...filter,
             weaponProperties: filter.weaponProperties?.filter((p) => p != property)
@@ -680,14 +680,14 @@ function weaponPropertiesFilterToButtons(filter: WeaponsBuilderFilter, setFilter
   )
 }
 
-function weaponTypesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): JSX.Element {
+function weaponTypesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): React.JSX.Element {
   if (filter.weaponTypes === undefined || filter.weaponTypes.length == 0) {
     return <div>Types</div>
   }
   return (
     <div className="flex">{
       filter.weaponTypes.map((type) => {
-        return <button className="btn rounded-box" onClick={(e) => {
+        return <button className="d-btn rounded-[var(--radius-box)]" onClick={(e) => {
           setFilter({
             ...filter,
             weaponTypes: filter.weaponTypes?.filter((t) => t != type)
@@ -698,14 +698,14 @@ function weaponTypesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: Rea
   )
 }
 
-function modToHover(mod: WeaponMod | undefined): JSX.Element {
+function modToHover(mod: WeaponMod | undefined): React.JSX.Element {
   if (!mod) {
     return <div key={"empty"}></div>
   }
   return (
-    <div key={mod.name.toLowerCase()} className="dropdown dropdown-hover dropdown-left dropdown-top">
-      <div tabIndex={0} role="button" className="badge badge-outline m-1">{weaponEnumToString(mod.name)}</div>
-      <div tabIndex={0} className="dropdown-content menu bg-base-100 z-[1] w-52 p-2 shadow">
+    <div key={mod.name.toLowerCase()} className="d-dropdown d-dropdown-hover d-dropdown-left d-dropdown-top">
+      <div tabIndex={0} role="button" className="d-badge d-badge-outline m-1">{weaponEnumToString(mod.name)}</div>
+      <div tabIndex={0} className="d-dropdown-content d-menu bg-base-100 z-[1] w-52 p-2 shadow">
         <div>{mod.description}</div>
       </div>
     </div>
@@ -718,7 +718,7 @@ function NameFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFi
       <input
         type="text"
         placeholder="Name"
-        className="input input-bordered w-40 h-[48px] px-4 py-0"
+        className="d-input d-input-bordered w-40 h-[48px] px-4 py-0"
         value={filter.weaponName || ''}
         onChange={(e) => setFilter({
           ...filter,
@@ -731,12 +731,12 @@ function NameFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFi
 
 function TreeFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
   return (
-    <div className="dropdown dropdown-hover">
-      <label tabIndex={0} className="btn btn-outline w-34">
+    <div className="d-dropdown d-dropdown-hover">
+      <label tabIndex={0} className="d-btn d-btn-outline w-34">
         {filter.weaponTree ? weaponEnumToString(filter.weaponTree) : "Tree"}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
       </label>
-      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
         <div className="h-48 py-2 overflow-y-auto">
           {Object.values(SimpleWeapons).map((tree) => (
             <li key={tree}>
@@ -754,12 +754,12 @@ function TreeFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFi
 
 function PropertiesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
   return (
-    <div className="dropdown dropdown-hover">
-      <label tabIndex={0} className="btn btn-outline w-34">
+    <div className="d-dropdown d-dropdown-hover">
+      <label tabIndex={0} className="d-btn d-btn-outline w-34">
         Properties
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
       </label>
-      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
         <div className="h-48 py-2 overflow-y-auto">
           {weaponPropertiesStringList.map((property) => (
             <li key={property}>
@@ -780,12 +780,12 @@ function PropertiesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter,
 
 function TypesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
   return (
-    <div className="dropdown dropdown-hover ">
-      <label tabIndex={0} className="btn btn-outline w-34">
+    <div className="d-dropdown d-dropdown-hover">
+      <label tabIndex={0} className="d-btn d-btn-outline w-34">
         Types
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
       </label>
-      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
         <div className="h-48 py-2 overflow-y-auto">
           {weaponTypesStringList.map((type) => (
             <li key={type}>
@@ -806,12 +806,12 @@ function TypesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setF
 
 function ModsFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
   return (
-    <div className="dropdown dropdown-hover ">
-      <label tabIndex={0} className="btn btn-outline w-34">
+    <div className="d-dropdown d-dropdown-hover">
+      <label tabIndex={0} className="d-btn d-btn-outline w-34">
         Mods
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
       </label>
-      <ul tabIndex={0} className="dropdown-content z-10 menu p-2 shadow bg-base-100 rounded-lg w-52">
+      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
         <div className="h-48 py-2 overflow-y-auto">
           {weaponModStringList.map((name) => (
             <li key={name}>
@@ -832,19 +832,19 @@ function ModsFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFi
 
 function WeaponCard({ weapon }: { weapon: WeaponInfo }) {
   return (
-    <div tabIndex={0} className="collapse collapse-arrow border-base-300 bg-base-200 border">
-      <div className="collapse-title text-xl font-medium flex items-center justify-between">
+    <div tabIndex={0} className="d-collapse d-collapse-arrow border-base-300 bg-base-200 border">
+      <div className="d-collapse-title text-xl font-medium flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <span>{weapon.displayName}</span>
           <span className="text-sm text-gray-500">({weaponEnumToString(weapon.tree)})</span>
         </div>
         <div className="flex items-center space-x-4">
-          <span className="badge badge-outline">{weapon.types.join(", ")}</span>
+          <span className="d-badge d-badge-outline">{weapon.types.join(", ")}</span>
           <span>{weapon.damage}</span>
           <span>{weapon.cost} gp</span>
         </div>
       </div>
-      <div className="collapse-content">
+      <div className="d-collapse-content">
         <div className="mt-2">
           <p><b>Properties:</b> {weapon.properties.map(p => weaponEnumToString(p)).join(", ")}</p>
         </div>
@@ -868,7 +868,7 @@ function WeaponsBuilder() {
         <div className="flex justify-between items-center p-4">
           <h1 className="text-2xl font-bold">Weapons</h1>
           <button
-            className="btn btn-circle btn-outline"
+            className="d-btn d-btn-circle d-btn-outline"
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
             <FaFilter />

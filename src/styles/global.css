@@ -1,0 +1,18 @@
+/* Tailwind 4 + Starlight + daisyUI.
+   Layer order matters: Starlight's styles must sit between Tailwind's base and its utilities. */
+@layer base, starlight, theme, components, utilities;
+
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* daisyUI supplies the button/badge/dropdown/etc. styling used by React islands
+   such as the weapon builder. Every daisyUI class is prefixed with `d-` (d-btn, d-badge, ...)
+   so its class names can never collide with Starlight's own (Starlight uses `stack`,
+   `tab`, `toggle`, `dropdown`, which daisyUI would otherwise restyle).
+   Only the components actually used are included, to keep the CSS small. */
+@plugin 'daisyui' {
+  themes: light --default, dark --prefersdark;
+  prefix: d-;
+  include: button, badge, collapse, dropdown, input, menu, range, label, loading, card, join;
+}
