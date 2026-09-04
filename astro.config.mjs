@@ -26,5 +26,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      // Dev server is reached over the LAN by hostname as well as by IP.
+      allowedHosts: ['straylight', 'straylight.local'],
+    },
   },
 });
