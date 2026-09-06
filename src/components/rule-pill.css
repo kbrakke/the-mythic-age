@@ -1,0 +1,5 @@
+.wb-rule-pill { font: inherit; font-size: .75rem; }
+.wb-rule-pill:focus-visible { outline: 2px solid var(--wb-gold, #a16207); outline-offset: 3px; }
+.rule-tooltip { position: fixed; z-index: 10000; box-sizing: border-box; width: 320px; max-width: calc(100vw - 16px); max-height: 45vh; overflow: auto; padding: .8rem; border: 1px solid #736353; border-radius: 7px; background: #171411; color: #f4ecdf; box-shadow: 0 8px 28px #0005; font: .85rem/1.5 system-ui, sans-serif; }
+.rule-tooltip > strong { display: block; margin: 0 0 .3rem; color: #edc46f; }
+.rule-tooltip > span { display: block; margin: 0; }

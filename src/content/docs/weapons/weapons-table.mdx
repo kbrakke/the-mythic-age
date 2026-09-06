@@ -1,7 +1,10 @@
 ---
 title: Weapons Table
-description: Filterable Weapons Table
+description: Search and compare every mundane weapon path.
+template: splash
+sidebar:
+  order: 2
 ---
-import WeaponBuilder from "../../../components/weapon-builder.tsx";
+import WeaponWorkbench from "../../../components/weapon-builder.tsx";
 
-<WeaponBuilder client:only="react" />
+<WeaponWorkbench initialView="reference" client:load />

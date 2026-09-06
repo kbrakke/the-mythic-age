@@ -1,0 +1,69 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection, render } from 'astro:content';
+import '../../components/world-timeline.css';
+
+const entries = (await getCollection('timeline')).sort((a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id));
+const events = await Promise.all(entries.map(async (entry) => ({ ...entry, Content: (await render(entry)).Content })));
+const regions = [...new Set(entries.flatMap(entry => entry.data.regions))].sort();
+const eras = ['Undated history', 'The world in living memory'];
+---
+<StarlightPage frontmatter={{ title: 'World timeline', description: 'Explore the events that shaped The Mythic Age.', template: 'splash' }}>
+  <section class="world-timeline not-content" aria-label="World timeline">
+    <header class="chronicle-intro">
+      <span class="chronicle-eyebrow">THE CHRONICLES OF THE MYTHIC AGE</span>
+      <h1>Gods fall.<br /><em>History carries on.</em></h1>
+      <p>Follow the turning points that shaped the world—and the unfinished stories your adventures will become part of.</p>
+      <div class="chronicle-note">Oldest to newest · Dates relative to the campaign present · Spacing is not to scale</div>
+    </header>
+    <div class="chronicle-tools" hidden>
+      <div class="chronicle-filters">
+        <label>Search the chronicles<input type="search" id="timeline-search" placeholder="An event, a nation, a god…" /></label>
+        <label>Region<select id="timeline-region"><option value="">All regions</option>{regions.map(region => <option>{region}</option>)}</select></label>
+      </div>
+      <div class="chronicle-controls"><span id="timeline-count" role="status" aria-live="polite">{events.length} events</span><div><button type="button" id="timeline-expand">Expand all</button><button type="button" id="timeline-collapse">Collapse all</button><button type="button" id="timeline-reset">Reset filters</button></div></div>
+    </div>
+    <div class="chronicle-empty" hidden>No events match those filters. Try another name or region.</div>
+    {eras.map(era => <section class="chronicle-era" aria-label={era}>
+      <h2>{era}</h2>
+      {era === 'Undated history' && <p class="era-note">Stories without a fixed year. Their order here does not establish a chronology.</p>}
+      <ol class="chronicle-track">
+        {events.filter(event => event.data.era === era).map(({ id, data, body, Content }) => <li class="chronicle-event" data-search={`${data.title} ${data.summary} ${data.regions.join(' ')} ${body}`.toLowerCase()} data-regions={JSON.stringify(data.regions)}>
+          <div class="chronicle-date">{data.date}</div>
+          <details id={`event-${id}`} class:list={['chronicle-bubble', { 'is-turning-point': data.kind === 'Turning point' }]}>
+            <summary><span class="event-category">{data.kind}</span><span class="event-title">{data.title}</span><span class="event-summary">{data.summary}</span><span class="event-bottom"><span>{data.regions.join(' · ')}</span><span class="event-toggle" aria-hidden="true">+</span></span></summary>
+            <div class="event-body"><Content /><footer><a href={data.source}>Read: {data.sourceLabel} →</a><a href={`#event-${id}`} aria-label={`Link to ${data.title}`}>Event link</a></footer></div>
+          </details>
+        </li>)}
+      </ol>
+    </section>)}
+    <footer class="chronicle-end"><span>✦</span><p>The next chapter is unwritten.</p><a href="/world/overview/">Explore the world →</a></footer>
+  </section>
+</StarlightPage>
+<script>
+  const root = document.querySelector<HTMLElement>('.world-timeline')!;
+  const search = root.querySelector<HTMLInputElement>('#timeline-search')!;
+  const region = root.querySelector<HTMLSelectElement>('#timeline-region')!;
+  const events = [...root.querySelectorAll<HTMLElement>('.chronicle-event')];
+  const applyFilters = () => {
+    const query = search.value.trim().toLowerCase();
+    for (const event of events) event.hidden = !(event.dataset.search!.includes(query) && (!region.value || JSON.parse(event.dataset.regions!).includes(region.value)));
+    for (const era of root.querySelectorAll<HTMLElement>('.chronicle-era')) era.hidden = !era.querySelector('.chronicle-event:not([hidden])');
+    const count = events.filter(event => !event.hidden).length;
+    root.querySelector('#timeline-count')!.textContent = `${count} of ${events.length} events`;
+    root.querySelector<HTMLElement>('.chronicle-empty')!.hidden = count !== 0;
+  };
+  root.querySelector<HTMLElement>('.chronicle-tools')!.hidden = false;
+  search.addEventListener('input', applyFilters);
+  region.addEventListener('change', applyFilters);
+  root.querySelector('#timeline-reset')!.addEventListener('click', () => { search.value = ''; region.value = ''; applyFilters(); });
+  for (const [id, open] of [['timeline-expand', true], ['timeline-collapse', false]] as const) root.querySelector(`#${id}`)!.addEventListener('click', () => { for (const event of events.filter(event => !event.hidden)) event.querySelector('details')!.open = open; });
+  const openLinkedEvent = () => {
+    const target = events.map(event => event.querySelector('details')!).find(detail => `#${detail.id}` === window.location.hash);
+    if (!target) return;
+    search.value = ''; region.value = ''; applyFilters(); target.open = true;
+    target.scrollIntoView({ block: 'center' });
+  };
+  window.addEventListener('hashchange', openLinkedEvent);
+  openLinkedEvent();
+</script>

@@ -1,901 +1,494 @@
-import React, { useState } from "react";
-import { FaFilter } from "react-icons/fa6";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import {
+  ArrowRight,
+  Check,
+  ChevronDown,
+  CircleDollarSign,
+  Hammer,
+  RotateCcw,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Swords,
+} from "lucide-react";
+import {
+  advancedWeapons,
+  applyMonsterStats,
+  basicWeapons,
+  formatGold,
+  modDescription,
+  modificationCost,
+  mods,
+  monsterInfusionCost,
+  monsterCompatibility,
+  weapons,
+  type Weapon,
+} from "./weapon-data";
+import { apexRequirement, monsterWeapons, rulesForWeapon, type MonsterTier } from "./monster-weapon-data";
+import { ruleName, ruleText } from "../data/game-rules";
+import RulePill from "./RulePill";
+import { splitNamedAbilities } from "./rule-sections";
+import WeaponExport from "./WeaponExport";
+import { makeWeaponCard } from "./weapon-export";
+import { resolveTreeBuild, type TreeBuildPreset } from "./weapon-build-links";
+import "./weapon-builder.css";
 
+type View = "builder" | "reference";
 
-type WeaponInfo = {
-  name: SimpleWeapons | AdvancedWeapons
-  displayName: string,
-  cost: number,
-  tree: SimpleWeapons,
-  damage: string,
-  properties: string[],
-  types: string[],
-  mods: (WeaponMod | undefined)[]
-}
-
-enum SimpleWeapons {
-  crystal = "CRYSTAL",
-  staff = "STAFF",
-  bow = "BOW",
-  axe = "AXE",
-  club = "CLUB",
-  dagger = "DAGGER",
-  hammer = "HAMMER",
-  longsword = "LONGSWORD",
-  shortSword = "SHORT_SWORD",
-  spear = "SPEAR"
+type WeaponWorkbenchProps = {
+  initialView?: View;
 };
 
-enum AdvancedWeapons {
-  labrys = "LABRYS",
-  tabarzin = "TABARZIN",
-  greatclub = "GREATCLUB",
-  dolabra = "DOLABRA",
-  pugio = "PUGIO",
-  khanjar = "KHANJAR",
-  maul = "MAUL",
-  thrownHammer = "THROWN_HAMMER",
-  warhammer = "WARHAMMER",
-  shotel = "SHOTEL",
-  spatha = "SPATHA",
-  javelin = "JAVELIN",
-  doru = "DORU",
-  gladus = "GLADUS",
-  kopesh = "KOPESH",
-  quarterstaff = "QUARTERSTAFF",
-  shortbow = "SHORTBOW",
-  longbow = "LONGBOW"
-}
-enum WeaponModsEnum {
-  bone = "BONE",
-  brutal = "BRUTAL",
-  cheap = "CHEAP",
-  concealable = "CONCEALABLE",
-  crossGuard = "CROSS_GUARD",
-  dense = "DENSE",
-  dualHead = "DUAL_HEAD",
-  empowering = "EMPOWERING",
-  fast = "FAST",
-  keen = "KEEN",
-  metal = "METAL",
-  penetrating = "PENETRATING",
-  pummeling = "PUMMELING",
-  rejuvenating = "REJUVENATING",
-  recurve = "RECURVE",
-  sauroter = "SAUROTER",
-  sundering = "SUNDERING",
-  unrelenting = "UNRELENTING",
-  volatile = "VOLATILE",
-  weightedHaft = "WEIGHTED_HAFT",
-  wood = "WOOD",
-}
-type WeaponMod = {
-  name: WeaponModsEnum,
-  description: string,
-}
+const kindLabels = { melee: "Melee", ranged: "Ranged", focus: "Spell focus" } as const;
+const tierNames = ["Mundane", "Minor", "Major", "Apex"];
 
-const weaponModStringList: string[] = [
-  "BONE",
-  "BRUTAL",
-  "CHEAP",
-  "CONCEALABLE",
-  "CROSS_GUARD",
-  "DENSE",
-  "DUAL_HEAD",
-  "EMPOWERING",
-  "FAST",
-  "KEEN",
-  "METAL",
-  "PENETRATING",
-  "PUMMELING",
-  "REJUVENATING",
-  "RECURVE",
-  "SAUROTER",
-  "SUNDERING",
-  "UNRELENTING",
-  "VOLATILE",
-  "WEIGHTED_HAFT",
-  "WOOD",
-]
-
-const weaponMods: Map<WeaponModsEnum, WeaponMod> = new Map([
-  [WeaponModsEnum.bone, {
-    name: WeaponModsEnum.bone,
-    description: "When you score a critical hit you may deal additional damage equal to your proficiency bonus and gain an equal amount of temporary hit points."
-  }],
-  [WeaponModsEnum.brutal, {
-    name: WeaponModsEnum.brutal,
-    description: "When rolling damage for a critical hit, if any damage dice roll their highest number you may roll an additional weapon damage die and add the result to your damage."
-  }],
-  [WeaponModsEnum.cheap, {
-    name: WeaponModsEnum.cheap,
-    description: "This weapon may be upgraded to advanced or have modifications added for 1/10th of the price."
-  }],
-  [WeaponModsEnum.concealable, {
-    name: WeaponModsEnum.concealable,
-    description: "You have advantage on Dexterity (Sleight of Hand) checks made to conceal this weapon."
-  }],
-  [WeaponModsEnum.crossGuard, {
-    name: WeaponModsEnum.crossGuard,
-    description: "+1 AC When not using a shield. Does not stack with another Crossguard."
-  }],
-  [WeaponModsEnum.dense, {
-    name: WeaponModsEnum.dense,
-    description: "When you score a critical hit, you may add your strength bonus to your damage an additional time."
-  }],
-  [WeaponModsEnum.dualHead, {
-    name: WeaponModsEnum.dualHead,
-    description: "When you would deal bludgeoning, slashing or piercing damage you may instead deal a different type of damage. This can only be used on weapons."
-  }],
-  [WeaponModsEnum.empowering, {
-    name: WeaponModsEnum.empowering,
-    description: "When you cast a spell using a higher spell slot, if the spell heals hit points or deals damage, increase that amount by the slot you used to cast the spell. This property can only be used on casting foci."
-  }],
-  [WeaponModsEnum.fast, {
-    name: WeaponModsEnum.fast,
-    description: "Drawing or stowing this weapon does not require an interaction with an object."
-  }],
-  [WeaponModsEnum.keen, {
-    name: WeaponModsEnum.keen,
-    description: "When you score a critical hit you can add your dexterity modifier (minimum 0) to the damage you deal. This can only be used on weapons."
-  }],
-  [WeaponModsEnum.metal, {
-    name: WeaponModsEnum.metal,
-    description: "When you deal damage with a spell you may add your proficiency bonus to that damage. Once you do you must complete a short rest before doing it again."
-  }],
-  [WeaponModsEnum.penetrating, {
-    name: WeaponModsEnum.penetrating,
-    description: "When you score a critical hit, you may add your proficiency bonus to the damage you deal."
-  }],
-  [WeaponModsEnum.pummeling, {
-    name: WeaponModsEnum.pummeling,
-    description: "When you score a critical hit, you may push the target 5 feet away."
-  }],
-  [WeaponModsEnum.rejuvenating, {
-    name: WeaponModsEnum.rejuvenating,
-    description: "When you heal another creature, you gain temporary hit points equal to the spell's level."
-  }],
-  [WeaponModsEnum.recurve, {
-    name: WeaponModsEnum.recurve,
-    description: "Increase this weapon's range by 50/100."
-  }],
-  [WeaponModsEnum.sauroter, {
-    name: WeaponModsEnum.sauroter,
-    description: "If you hit with an opportunity attack, creature's speed becomes 0 until your turn."
-  }],
-  [WeaponModsEnum.sundering, {
-    name: WeaponModsEnum.sundering,
-    description: "You have advantage on Strength checks made to break objects with this weapon. This weapon deals maxium damage to objects."
-  }],
-  [WeaponModsEnum.unrelenting, {
-    name: WeaponModsEnum.unrelenting,
-    description: "When rolling damage for a critical hit, if any of your damage dice are a 1, you may roll one additional weapon damage die and add the result to your damage."
-  }],
-  [WeaponModsEnum.volatile, {
-    name: WeaponModsEnum.volatile,
-    description: "If a spell you cast would deal Acid, Cold, Fire, Lightning, or Thunder damage, you may re-roll one of the damage dice taking the new result."
-  }],
-  [WeaponModsEnum.weightedHaft, {
-    name: WeaponModsEnum.weightedHaft,
-    description: "No penalty for ranged attacks beyond the first range increment."
-  }],
-  [WeaponModsEnum.wood, {
-    name: WeaponModsEnum.wood,
-    description: "When you heal hit points with a spell, you may add your proficiency bonus to that healing. Once you do so you must complete a short rest before doing it again."
-  }],
-])
-
-function weaponEnumToString(weapon: SimpleWeapons | AdvancedWeapons | WeaponModsEnum | string): string {
-  return (weapon.charAt(0) + weapon.toLocaleLowerCase().substring(1)).replace(/_/g, " ");
-}
-const simpleWeapons: Array<WeaponInfo> = [
-  {
-    name: SimpleWeapons.crystal,
-    displayName: "Crystal",
-    cost: 25,
-    damage: "-",
-    tree: SimpleWeapons.crystal,
-    properties: ["VOLATILE"],
-    types: ["SIMPLE", "FOCUS"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.bone),
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.metal)
-    ]
-  },
-  {
-    name: SimpleWeapons.staff,
-    displayName: "Staff",
-    tree: SimpleWeapons.staff,
-    cost: 25,
-    damage: "1d6 b",
-    properties: ["EMPOWERING"],
-    types: ["SIMPLE", "FOCUS"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.bone),
-      weaponMods.get(WeaponModsEnum.wood),
-      weaponMods.get(WeaponModsEnum.concealable)
-    ]
-  },
-  {
-    name: SimpleWeapons.bow,
-    displayName: "Bow",
-    tree: SimpleWeapons.bow,
-    cost: 25,
-    damage: "1d6 p",
-    properties: ["AMMUNITION (range 80/320)", "TWO_HANDED"],
-    types: ["SIMPLE", "RANGED"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  },
-  {
-    name: SimpleWeapons.axe,
-    displayName: "Axe",
-    tree: SimpleWeapons.axe,
-    cost: 10,
-    damage: "1d8 s",
-    properties: ["VERSATILE (1d10)"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  },
-  {
-    name: SimpleWeapons.club,
-    displayName: "Club",
-    tree: SimpleWeapons.club,
-    cost: 0.1,
-    damage: "1d4 b",
-    properties: ["Cheap (See Cost)"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.bone),
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.wood)
-    ]
-  },
-  {
-    name: SimpleWeapons.dagger,
-    displayName: "Dagger",
-    tree: SimpleWeapons.dagger,
-    cost: 2,
-    damage: "1d4 p",
-    properties: ["FINESSE", "LIGHT", "THROWN (range 20/60)"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: SimpleWeapons.hammer,
-    displayName: "Hammer",
-    tree: SimpleWeapons.hammer,
-    cost: 15,
-    damage: "1d8 b",
-    properties: ["VERSATILE (1d10)"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sundering)
-    ]
-  },
-  {
-    name: SimpleWeapons.longsword,
-    displayName: "Longsword",
-    tree: SimpleWeapons.longsword,
-    cost: 15,
-    damage: "1d8 s",
-    properties: ["VERSATILE (1d10)"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: SimpleWeapons.shortSword,
-    displayName: "Short Sword",
-    tree: SimpleWeapons.shortSword,
-    cost: 10,
-    damage: "1d6 s",
-    properties: ["FINESSE", "LIGHT"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: SimpleWeapons.spear,
-    displayName: "Spear",
-    tree: SimpleWeapons.spear,
-    cost: 1,
-    damage: "1d6 p",
-    properties: ["THROWN (range 20/60)", "VERSATILE (1d8)"],
-    types: ["SIMPLE", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.penetrating),
-      weaponMods.get(WeaponModsEnum.weightedHaft)
-    ]
-  }
-]
-
-const advancedWeapons: Array<WeaponInfo> = [
-  {
-    name: AdvancedWeapons.labrys,
-    displayName: "Labrys",
-    tree: SimpleWeapons.axe,
-    cost: 60,
-    damage: "1d12 s",
-    properties: ["HEAVY", "TWO_HANDED"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  },
-  {
-    name: AdvancedWeapons.tabarzin,
-    displayName: "Tabarzin",
-    tree: SimpleWeapons.axe,
-    cost: 60,
-    damage: "1d8 s",
-    properties: ["BRUTAL", "VERSATILE (1d10)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  },
-  {
-    name: AdvancedWeapons.greatclub,
-    displayName: "Greatclub",
-    tree: SimpleWeapons.club,
-    cost: 5,
-    damage: "1d6 b",
-    properties: ["VERSATILE (1d8)", "Cheap (See Cost)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.bone),
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.wood)
-    ]
-  },
-  {
-    name: AdvancedWeapons.dolabra,
-    displayName: "Dolabra",
-    tree: SimpleWeapons.axe,
-    cost: 60,
-    damage: "1d6 s",
-    properties: ["LIGHT", "THROWN (30/90)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  },
-  {
-    name: AdvancedWeapons.pugio,
-    displayName: "Pugio",
-    tree: SimpleWeapons.dagger,
-    cost: 52,
-    damage: "1d4 p",
-    properties: ["FINESSE", "LIGHT", "VERSATILE (1d6)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: AdvancedWeapons.khanjar,
-    displayName: "Khanjar",
-    tree: SimpleWeapons.dagger,
-    cost: 52,
-    damage: "1d4 p",
-    properties: ["FAST", "FINESSE", "BRUTAL", "LIGHT", "THROWN (range 20/60)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.penetrating),
-    ]
-  },
-  {
-    name: AdvancedWeapons.maul,
-    displayName: "Maul",
-    tree: SimpleWeapons.hammer,
-    cost: 65,
-    damage: "2d6 b",
-    properties: ["HEAVY", "TWO_HANDED"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sundering)
-    ]
-  },
-  {
-    name: AdvancedWeapons.thrownHammer,
-    displayName: "THROWN Hammer",
-    tree: SimpleWeapons.hammer,
-    cost: 65,
-    damage: "1d6 b",
-    properties: ["LIGHT", "THROWN (range 20/60)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sundering)
-    ]
-  },
-  {
-    name: AdvancedWeapons.warhammer,
-    displayName: "Warhammer",
-    tree: SimpleWeapons.hammer,
-    cost: 65,
-    damage: "1d8 b",
-    properties: ["VERSATILE (1d10)", "UNRELENTING"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sundering)
-    ]
-  },
-  {
-    name: AdvancedWeapons.shotel,
-    displayName: "Shotel",
-    tree: SimpleWeapons.longsword,
-    cost: 65,
-    damage: "2d6 s",
-    properties: ["TWO_HANDED", "HEAVY"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.penetrating),
-    ]
-  },
-  {
-    name: AdvancedWeapons.spatha,
-    displayName: "Spatha",
-    tree: SimpleWeapons.longsword,
-    cost: 65,
-    damage: "2d4 s",
-    properties: ["VERSATILE (1d6 + 1d4)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: AdvancedWeapons.javelin,
-    displayName: "Javelin",
-    tree: SimpleWeapons.spear,
-    cost: 51,
-    damage: "1d6 p",
-    properties: ["REACH", "VERSATILE (1d8)", "THROWN (range 40/120)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.penetrating),
-      weaponMods.get(WeaponModsEnum.weightedHaft)
-    ]
-  },
-  {
-    name: AdvancedWeapons.doru,
-    displayName: "Doru",
-    tree: SimpleWeapons.spear,
-    cost: 51,
-    damage: "1d8 p",
-    properties: ["REACH", "THROWN (20/60)", "VERSATILE (Heavy, 1d10)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dualHead),
-      weaponMods.get(WeaponModsEnum.sauroter),
-      weaponMods.get(WeaponModsEnum.penetrating),
-      weaponMods.get(WeaponModsEnum.weightedHaft)
-    ]
-  },
-  {
-    name: AdvancedWeapons.gladus,
-    displayName: "Gladus",
-    tree: SimpleWeapons.shortSword,
-    cost: 60,
-    damage: "1d6 s",
-    properties: ["FINESSE", "VERSATILE (1d8)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: AdvancedWeapons.kopesh,
-    displayName: "Kopesh",
-    tree: SimpleWeapons.shortSword,
-    cost: 60,
-    damage: "1d6 s",
-    properties: ["FAST", "FINESSE", "LIGHT"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.crossGuard),
-      weaponMods.get(WeaponModsEnum.concealable),
-      weaponMods.get(WeaponModsEnum.keen),
-      weaponMods.get(WeaponModsEnum.penetrating)
-    ]
-  },
-  {
-    name: AdvancedWeapons.quarterstaff,
-    displayName: "Quarterstaff",
-    tree: SimpleWeapons.club,
-    cost: 5,
-    damage: "1d8 b",
-    properties: ["HEAVY", "VERSATILE (1d10)", "Cheap (See Cost)"],
-    types: ["ADVANCED", "MELEE"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.bone),
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.wood)
-    ]
-  },
-  {
-    name: AdvancedWeapons.shortbow,
-    displayName: "Shortbow",
-    tree: SimpleWeapons.bow,
-    cost: 75,
-    damage: "1d6 p",
-    properties: ["AMMUNITION (range 80/320)", "TWO_HANDED", "FAST"],
-    types: ["ADVANCED", "RANGED"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  },
-  {
-    name: AdvancedWeapons.longbow,
-    displayName: "Longbow",
-    tree: SimpleWeapons.bow,
-    cost: 75,
-    damage: "1d8 p",
-    properties: ["AMMUNITION (range 150/600)", "TWO_HANDED"],
-    types: ["ADVANCED", "RANGED"],
-    mods: [
-      weaponMods.get(WeaponModsEnum.dense),
-      weaponMods.get(WeaponModsEnum.recurve),
-      weaponMods.get(WeaponModsEnum.weightedHaft),
-    ]
-  }
-]
-
-const weapons: Array<WeaponInfo> = simpleWeapons.concat(advancedWeapons);
-
-const weaponPropertiesStringList: string[] = weapons.flatMap((weapon) => weapon.properties)
-  .reduce((unique: string[], item: string) =>
-    unique.includes(item) ? unique : [...unique, item], []);
-
-const weaponTypesStringList: string[] = weapons.flatMap((weapon) => weapon.types)
-  .reduce((unique: string[], item: string) =>
-    unique.includes(item) ? unique : [...unique, item], []);
-
-type WeaponsBuilderFilter = {
-  weaponName: string,
-  weaponCost: number,
-  weaponTree: SimpleWeapons | AdvancedWeapons | undefined,
-  weaponDamage: string,
-  weaponProperties: string[],
-  weaponTypes: string[],
-  weaponMods: string[]
-}
-
-function weaponMatchesFilter(weapon: WeaponInfo, filter: WeaponsBuilderFilter): boolean {
+function ChoiceButton({
+  active,
+  children,
+  detail,
+  onClick,
+}: {
+  active: boolean;
+  children: React.ReactNode;
+  detail?: string;
+  onClick: () => void;
+}) {
   return (
-    (filter.weaponName ? weapon.displayName.toLocaleLowerCase().includes(filter.weaponName) : true) &&
-    (filter.weaponCost ? weapon.cost === filter.weaponCost : true) &&
-    (filter.weaponTree ? weapon.tree === filter.weaponTree : true) &&
-    (filter.weaponDamage ? weapon.damage === filter.weaponDamage : true) &&
-    (filter.weaponProperties
-      && filter.weaponProperties.length > 0
-      ? filter.weaponProperties.every((property) => weapon.properties.includes(property))
-      : true) &&
-    (filter.weaponTypes
-      && filter.weaponTypes.length > 0
-      ? filter.weaponTypes.every((type) => weapon.types.includes(type))
-      : true) &&
-    (filter.weaponMods
-      && filter.weaponMods.length > 0
-      ? weapon.mods.map((mod) => mod?.name).some((mod) => filter.weaponMods.includes(mod || ""))
-      : true)
-  )
+    <button className={`wb-choice${active ? " is-active" : ""}`} onClick={onClick} type="button">
+      <span>{children}</span>
+      {detail && <small>{detail}</small>}
+      {active && <Check aria-hidden="true" size={16} />}
+    </button>
+  );
 }
 
-function weaponModsFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): React.JSX.Element {
-  if (filter.weaponMods === undefined || filter.weaponMods.length == 0) {
-    return <div>Mods</div>
-  }
+function StepHeader({ number, title, optional }: { number: number; title: string; optional?: boolean }) {
   return (
-    <div className="flex">{
-      filter.weaponMods.map((mod) => {
-        return <button className="d-btn rounded-[var(--radius-box)]" onClick={(e) => {
-          setFilter({
-            ...filter,
-            weaponMods: filter.weaponMods?.filter((m) => m != mod)
-          })
-        }}>{weaponEnumToString(mod)}</button>
-      })
-    }</div>
-  )
+    <div className="wb-step-heading">
+      <span>{number}</span>
+      <strong>{title}</strong>
+      {optional && <small>Optional</small>}
+    </div>
+  );
 }
 
-function weaponPropertiesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): React.JSX.Element {
-  if (filter.weaponProperties === undefined || filter.weaponProperties.length == 0) {
-    return <div>Properties</div>
-  }
-  return (
-    <div className="flex">{
-      filter.weaponProperties.map((property) => {
-        return <button className="d-btn rounded-[var(--radius-box)]" onClick={(e) => {
-          setFilter({
-            ...filter,
-            weaponProperties: filter.weaponProperties?.filter((p) => p != property)
-          })
-        }}>{property}</button>
-      })
-    }</div>
-  )
+function cleanInline(text: string) {
+  return text
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-function weaponTypesFilterToButtons(filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>>): React.JSX.Element {
-  if (filter.weaponTypes === undefined || filter.weaponTypes.length == 0) {
-    return <div>Types</div>
-  }
+function RuleText({ text }: { text: string }) {
+  const blocks = text
+    .split(/\n\s*\n/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  if (!blocks.length) return null;
+
   return (
-    <div className="flex">{
-      filter.weaponTypes.map((type) => {
-        return <button className="d-btn rounded-[var(--radius-box)]" onClick={(e) => {
-          setFilter({
-            ...filter,
-            weaponTypes: filter.weaponTypes?.filter((t) => t != type)
-          })
-        }}>{type}</button>
-      })
-    }</div>
-  )
+    <div className="wb-rule-text">
+      {blocks.map((block, index) => {
+        const lines = block.split("\n").filter(Boolean);
+        if (lines.every((line) => /^\s*(?:[-*]|\d+[.)])\s+/.test(line))) {
+          return (
+            <ul key={index}>
+              {lines.map((line) => <li key={line}>{cleanInline(line.replace(/^\s*(?:[-*]|\d+[.)])\s+/, ""))}</li>)}
+            </ul>
+          );
+        }
+
+        const feature = block.match(/^\*{3}(.+?)\*{3}\s*(.*)$/s);
+        if (feature) {
+          return <p key={index}><strong>{cleanInline(feature[1])}</strong> {cleanInline(feature[2])}</p>;
+        }
+        return <p key={index}>{cleanInline(block)}</p>;
+      })}
+    </div>
+  );
 }
 
-function modToHover(mod: WeaponMod | undefined): React.JSX.Element {
-  if (!mod) {
-    return <div key={"empty"}></div>
-  }
+function Builder({ preset, clearPreset }: { preset?: TreeBuildPreset; clearPreset: () => void }) {
+  const [hasChosenWeapon, setHasChosenWeapon] = useState(!preset);
+  const [baseId, setBaseId] = useState("bow");
+  const [weaponId, setWeaponId] = useState("longbow");
+  const [modId, setModId] = useState<string | undefined>(preset ? undefined : "recurve");
+  const [monsterId, setMonsterId] = useState<string | undefined>(preset?.monsterId ?? "hydra");
+  const [treeName, setTreeName] = useState(preset?.treeName ?? "Northern Swarm");
+  const [tier, setTier] = useState(preset?.tier ?? 2);
+  const presetMonster = monsterWeapons.find((item) => item.id === preset?.monsterId);
+  const compatibleWeapons = advancedWeapons.filter((item) => preset && monsterCompatibility[preset.monsterId]?.includes(item.family));
+
+  const base = basicWeapons.find((item) => item.id === baseId) ?? basicWeapons[0];
+  const upgradeOptions = advancedWeapons.filter((item) => item.family === base.family);
+  const weapon = upgradeOptions.find((item) => item.id === weaponId) ?? upgradeOptions[0];
+  const availableMods = mods.filter((mod) => weapon.mods.includes(mod.id));
+  const availableMonsters = monsterWeapons.filter((monster) =>
+    monsterCompatibility[monster.id]?.includes(weapon.family),
+  );
+  const monster = availableMonsters.find((item) => item.id === monsterId);
+  const tree = monster?.trees.find((item) => item.name === treeName) ?? monster?.trees[0];
+  const chosenMod = mods.find((item) => item.id === modId);
+  const stats = applyMonsterStats(weapon, modId, monster?.id, tree?.name, monster ? tier : 0);
+  const modCost = chosenMod ? modificationCost(weapon) : 0;
+  const infusionCost = monster ? monsterInfusionCost(tier) : 0;
+  const totalGold = weapon.cost + modCost + infusionCost;
+  const selectedTier = tree?.tiers.find((item) => item.rank === tier);
+
+  const selectBase = (nextBase: Weapon) => {
+    const nextWeapon = advancedWeapons.find((item) => item.family === nextBase.family)!;
+    setBaseId(nextBase.id);
+    setWeaponId(nextWeapon.id);
+    setModId(undefined);
+    setMonsterId(undefined);
+    setTreeName("");
+    setTier(0);
+  };
+
+  const selectWeapon = (nextWeapon: Weapon) => {
+    setBaseId(basicWeapons.find((item) => item.family === nextWeapon.family)!.id);
+    setWeaponId(nextWeapon.id);
+    setHasChosenWeapon(true);
+    if (!nextWeapon.mods.includes(modId ?? "")) setModId(undefined);
+    if (preset) return;
+    setMonsterId(undefined);
+    setTreeName("");
+    setTier(0);
+  };
+
+  const selectMonster = (nextId?: string) => {
+    const nextMonster = monsterWeapons.find((item) => item.id === nextId);
+    setMonsterId(nextId);
+    setTreeName(nextMonster?.trees[0]?.name ?? "");
+    setTier(nextId ? 1 : 0);
+  };
+
+  const reset = () => {
+    setBaseId("bow");
+    setWeaponId("longbow");
+    setModId(undefined);
+    setMonsterId(undefined);
+    setTreeName("");
+    setTier(0);
+  };
+
+  const weaponDescription = [
+    monster?.name,
+    chosenMod?.name,
+    weapon.name,
+  ].filter(Boolean).join(" ");
+
   return (
-    <div key={mod.name.toLowerCase()} className="d-dropdown d-dropdown-hover d-dropdown-left d-dropdown-top">
-      <div tabIndex={0} role="button" className="d-badge d-badge-outline m-1">{weaponEnumToString(mod.name)}</div>
-      <div tabIndex={0} className="d-dropdown-content d-menu bg-base-100 z-[1] w-52 p-2 shadow">
-        <div>{mod.description}</div>
+    <div className="wb-builder-grid">
+      <div className="wb-build-controls">
+        {preset && <section className="wb-step">
+          <p className="wb-weapon-description">Building from {presetMonster?.name} · {preset.treeName}</p>
+          <StepHeader number={1} title={`Choose a weapon for ${preset.treeName}`} />
+          <p className="wb-weapon-description">This tree is already selected. Choose a compatible weapon to see its version of the abilities.</p>
+          <div className="wb-choice-grid">
+            {compatibleWeapons.map((item) => <ChoiceButton key={item.id} active={hasChosenWeapon && item.id === weapon.id} detail={`${item.damage} · ${formatGold(item.cost)}`} onClick={() => selectWeapon(item)}>{item.name}</ChoiceButton>)}
+          </div>
+          <button className="wb-reset" onClick={clearPreset} type="button">Start a different build</button>
+        </section>}
+        {!preset && <>
+        <section className="wb-step">
+          <StepHeader number={1} title="Choose a foundation" />
+          <div className="wb-choice-grid wb-family-grid">
+            {basicWeapons.map((item) => (
+              <ChoiceButton
+                active={item.id === base.id}
+                detail={`${item.damage} · ${kindLabels[item.kind]}`}
+                key={item.id}
+                onClick={() => selectBase(item)}
+              >
+                {item.name}
+              </ChoiceButton>
+            ))}
+          </div>
+        </section>
+
+        <section className="wb-step">
+          <StepHeader number={2} title="Choose its advanced form" />
+          <div className="wb-choice-grid">
+            {upgradeOptions.map((item) => (
+              <ChoiceButton
+                active={item.id === weapon.id}
+                detail={`${item.damage} · ${formatGold(item.cost)} total`}
+                key={item.id}
+                onClick={() => selectWeapon(item)}
+              >
+                {item.name}
+              </ChoiceButton>
+            ))}
+          </div>
+        </section>
+
+        </>}
+        {hasChosenWeapon && <>
+        <section className="wb-step">
+          <StepHeader number={preset ? 2 : 3} title="Add a modification" optional />
+          <div className="wb-choice-grid">
+            <ChoiceButton active={!modId} detail="No additional cost" onClick={() => setModId(undefined)}>None</ChoiceButton>
+            {availableMods.map((mod) => (
+              <ChoiceButton
+                active={mod.id === modId}
+                detail={formatGold(modificationCost(weapon))}
+                key={mod.id}
+                onClick={() => setModId(mod.id)}
+              >
+                {mod.name}
+              </ChoiceButton>
+            ))}
+          </div>
+          {chosenMod && <p className="wb-selection-note">{modDescription(chosenMod)}</p>}
+        </section>
+
+        {!preset && <section className="wb-step">
+          <StepHeader number={4} title="Infuse it with a monster" optional />
+          <div className="wb-choice-grid">
+            <ChoiceButton active={!monster} detail="Remain mundane" onClick={() => selectMonster(undefined)}>Uninfused</ChoiceButton>
+            {availableMonsters.map((item) => (
+              <ChoiceButton
+                active={item.id === monster?.id}
+                detail={`${item.trees.length} ${item.trees.length === 1 ? "path" : "paths"}`}
+                key={item.id}
+                onClick={() => selectMonster(item.id)}
+              >
+                {item.name}
+              </ChoiceButton>
+            ))}
+          </div>
+          {!availableMonsters.length && <p className="wb-empty">No monster weapon paths are documented for this weapon family yet.</p>}
+        </section>}
+
+        {monster && tree && (
+          <section className="wb-step">
+            <StepHeader number={preset ? 3 : 5} title={preset ? `Explore ${preset.treeName}` : "Follow an infusion path"} />
+            {!preset && <div className="wb-choice-grid">
+              {monster.trees.map((item) => (
+                <ChoiceButton
+                  active={item.name === tree.name}
+                  detail={`${item.tiers.length} named infusions`}
+                  key={item.name}
+                  onClick={() => { setTreeName(item.name); if (!item.tiers.some((entry) => entry.rank === tier)) setTier(item.tiers[0]?.rank ?? 0); }}
+                >
+                  {item.name}
+                </ChoiceButton>
+              ))}
+            </div>}
+            <div className="wb-tier-track" aria-label="Infusion tier">
+              {[1, 2, 3].map((rank) => {
+                const tierData = tree.tiers.find((item) => item.rank === rank);
+                return (
+                  <button
+                    className={tier === rank ? "is-active" : tier > rank ? "is-complete" : ""}
+                    disabled={!tierData}
+                    aria-pressed={tier === rank}
+                    key={rank}
+                    onClick={() => setTier(rank)}
+                    type="button"
+                  >
+                    <span>{rank}</span>
+                    <strong>{tierData?.name ?? "Not documented"}</strong>
+                    <small>{tierData ? `${tierData.rankName} infusion` : tierNames[rank]}</small>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+        )}
+        </>}
       </div>
-    </div>
-  )
-}
 
-function NameFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
-  return (
-    <div className="flex items-center">
-      <input
-        type="text"
-        placeholder="Name"
-        className="d-input d-input-bordered w-40 h-[48px] px-4 py-0"
-        value={filter.weaponName || ''}
-        onChange={(e) => setFilter({
-          ...filter,
-          weaponName: e.target.value.toLowerCase()
-        })}
-      />
-    </div>
-  );
-}
+      <aside className="wb-sheet-wrap">
+        {hasChosenWeapon ? <>
+        <WeaponExport card={makeWeaponCard({ weapon, modName: chosenMod?.name, ...stats, totalGold, modCost, infusionCost, monster, tree, tier })} />
+        <div className="wb-sheet" style={{ "--monster-accent": monster?.accent ?? "#a16207" } as React.CSSProperties}>
+          <div className="wb-sheet-kicker"><Swords size={16} /> Finished weapon</div>
+          <h2>{selectedTier?.name ?? weaponDescription}</h2>
+          {selectedTier && <p className="wb-weapon-description">{weaponDescription} · {tree?.name} · {selectedTier.rankName}</p>}
+          <p className="wb-progression">{base.name} <ArrowRight size={14} /> {weapon.name}{monster && <><ArrowRight size={14} /> {monster.name}</>}</p>
 
-function TreeFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
-  return (
-    <div className="d-dropdown d-dropdown-hover">
-      <label tabIndex={0} className="d-btn d-btn-outline w-34">
-        {filter.weaponTree ? weaponEnumToString(filter.weaponTree) : "Tree"}
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-      </label>
-      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
-        <div className="h-48 py-2 overflow-y-auto">
-          {Object.values(SimpleWeapons).map((tree) => (
-            <li key={tree}>
-              <a onClick={() => setFilter({ ...filter, weaponTree: tree as SimpleWeapons })}>{weaponEnumToString(tree)}</a>
-            </li>
-          ))}
-        </div>
-        <div className="border-t border-gray-200 dark:border-gray-600">
-          <li><a onClick={() => setFilter({ ...filter, weaponTree: undefined })}>Clear</a></li>
-        </div>
-      </ul>
-    </div>
-  );
-}
+          <div className="wb-stat-grid">
+            <div><span>Weapon dice</span><strong>{stats.damage}</strong></div>
+            <div><span>Magic bonus</span><strong>{stats.bonus ? `+${stats.bonus}` : "—"}</strong></div>
+            <div><span>Total gold cost</span><strong>{formatGold(totalGold)}</strong></div>
+            <div><span>Category</span><strong>{kindLabels[weapon.kind]}</strong></div>
+          </div>
 
-function PropertiesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
-  return (
-    <div className="d-dropdown d-dropdown-hover">
-      <label tabIndex={0} className="d-btn d-btn-outline w-34">
-        Properties
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-      </label>
-      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
-        <div className="h-48 py-2 overflow-y-auto">
-          {weaponPropertiesStringList.map((property) => (
-            <li key={property}>
-              <a onClick={() => setFilter({
-                ...filter,
-                weaponProperties: (filter.weaponProperties ? [...filter.weaponProperties, property] : [property])
-              })}>{weaponEnumToString(property)}</a>
-            </li>
-          ))}
-        </div>
-        <div className="border-t border-gray-200 dark:border-gray-600">
-          <li><a onClick={() => setFilter({ ...filter, weaponProperties: [] })}>Clear</a></li>
-        </div>
-      </ul>
-    </div>
-  );
-}
+          {monster && <p className="wb-calculation-note">Weapon dice exclude ability modifiers and the magic bonus. Conditional attacks, spell bonuses, saves, and player-chosen features are detailed in the rules below, not fully calculated here.</p>}
 
-function TypesFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
-  return (
-    <div className="d-dropdown d-dropdown-hover">
-      <label tabIndex={0} className="d-btn d-btn-outline w-34">
-        Types
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-      </label>
-      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
-        <div className="h-48 py-2 overflow-y-auto">
-          {weaponTypesStringList.map((type) => (
-            <li key={type}>
-              <a onClick={() => setFilter({
-                ...filter,
-                weaponTypes: (filter.weaponTypes ? [...filter.weaponTypes, type] : [type])
-              })}>{weaponEnumToString(type)}</a>
-            </li>
-          ))}
-        </div>
-        <div className="border-t border-gray-200 dark:border-gray-600">
-          <li><a onClick={() => setFilter({ ...filter, weaponTypes: [] })}>Clear</a></li>
-        </div>
-      </ul>
-    </div>
-  );
-}
-
-function ModsFilter({ filter, setFilter }: { filter: WeaponsBuilderFilter, setFilter: React.Dispatch<React.SetStateAction<WeaponsBuilderFilter>> }) {
-  return (
-    <div className="d-dropdown d-dropdown-hover">
-      <label tabIndex={0} className="d-btn d-btn-outline w-34">
-        Mods
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-      </label>
-      <ul tabIndex={0} className="d-dropdown-content z-10 d-menu p-2 shadow bg-base-100 rounded-lg w-52">
-        <div className="h-48 py-2 overflow-y-auto">
-          {weaponModStringList.map((name) => (
-            <li key={name}>
-              <a onClick={() => setFilter({
-                ...filter,
-                weaponMods: (filter.weaponMods ? [...filter.weaponMods, name] : [name])
-              })}>{weaponEnumToString(name)}</a>
-            </li>
-          ))}
-        </div>
-        <div className="border-t border-gray-200 dark:border-gray-600">
-          <li><a onClick={() => setFilter({ ...filter, weaponMods: [] })}>Clear</a></li>
-        </div>
-      </ul>
-    </div>
-  );
-}
-
-function WeaponCard({ weapon }: { weapon: WeaponInfo }) {
-  return (
-    <div tabIndex={0} className="d-collapse d-collapse-arrow border-base-300 bg-base-200 border">
-      <div className="d-collapse-title text-xl font-medium flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <span>{weapon.displayName}</span>
-          <span className="text-sm text-gray-500">({weaponEnumToString(weapon.tree)})</span>
-        </div>
-        <div className="flex items-center space-x-4">
-          <span className="d-badge d-badge-outline">{weapon.types.join(", ")}</span>
-          <span>{weapon.damage}</span>
-          <span>{weapon.cost} gp</span>
-        </div>
-      </div>
-      <div className="d-collapse-content">
-        <div className="mt-2">
-          <p><b>Properties:</b> {weapon.properties.map(p => weaponEnumToString(p)).join(", ")}</p>
-        </div>
-        <div className="mt-2">
-          <p><b>Available Mods:</b> {weapon.mods?.map(mod => modToHover(mod))}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function WeaponsBuilder() {
-  const [filter, setFilter] = React.useState<WeaponsBuilderFilter>({} as WeaponsBuilderFilter);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  const filteredWeapons = weapons.filter((weapon) => weaponMatchesFilter(weapon, filter));
-
-  return (
-    <div className="relative">
-      <div className="sticky top-0 z-10 bg-base-100 shadow-md">
-        <div className="flex justify-between items-center p-4">
-          <h1 className="text-2xl font-bold">Weapons</h1>
-          <button
-            className="d-btn d-btn-circle d-btn-outline"
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-          >
-            <FaFilter />
-          </button>
-        </div>
-        {isFilterOpen && (
-          <div className="p-4 bg-base-200 border-t border-b">
-            <div className="flex flex-wrap gap-2 items-center">
-              <span><NameFilter filter={filter} setFilter={setFilter} /></span>
-              <span><TreeFilter filter={filter} setFilter={setFilter} /></span>
-              <span><PropertiesFilter filter={filter} setFilter={setFilter} /></span>
-              <span><TypesFilter filter={filter} setFilter={setFilter} /></span>
-              <span><ModsFilter filter={filter} setFilter={setFilter} /></span>
+          <div className="wb-sheet-section">
+            <h3><ShieldCheck size={17} /> Properties</h3>
+            <div className="wb-property-list">
+              {stats.properties.map((property) => <RulePill key={`${property.ruleId}-${JSON.stringify(property.values)}`} rule={property} />)}
             </div>
           </div>
-        )}
-      </div>
 
-      <div className="p-4">
-        <div className="space-y-2">
-          {filteredWeapons.sort((a, b) => a.name.localeCompare(b.name)).map((weapon) => (
-            <WeaponCard key={weapon.name} weapon={weapon} />
-          ))}
+          <div className="wb-sheet-section wb-cost-block">
+            <h3><CircleDollarSign size={17} /> Cost</h3>
+            <dl>
+              <div><dt>{weapon.name} (includes {base.name})</dt><dd>{formatGold(weapon.cost)}</dd></div>
+              {chosenMod && <div><dt>{chosenMod.name} modification</dt><dd>{formatGold(modCost)}</dd></div>}
+              {monster && <div><dt>{tierNames[tier]} {monster.name} infusion</dt><dd>{formatGold(infusionCost)} + parts</dd></div>}
+              <div className="wb-cost-total"><dt>Total gold cost</dt><dd>{formatGold(totalGold)}</dd></div>
+            </dl>
+            {monster && tier === 3 && tree && <p className="wb-apex-requirement"><strong>Apex requirement:</strong> {apexRequirement(monster, tree)}</p>}
+            {monster && tier < 3 && <p>Monster parts are required in addition to the gold cost.</p>}
+          </div>
+
+          {monster && tree && (
+            <div className="wb-sheet-section">
+              <h3><Sparkles size={17} /> {monster.name} base features</h3>
+              <RuleText text={monster.baseRules} />
+              <div className="wb-tree-intro">
+                <strong>{tree.name} path</strong>
+                <RuleText text={tree.description} />
+              </div>
+              {tree.tiers.filter((item) => item.rank <= tier).map((item) => (
+                <TierRules key={item.rank} tier={item} weapon={weapon} />
+              ))}
+              <a className="wb-rules-link" href={`/weapons/${monster.sourcePath}/`}>Read the complete {monster.name} rules <ArrowRight size={14} /></a>
+            </div>
+          )}
         </div>
-      </div>
+        <button className="wb-reset" onClick={preset ? () => { setHasChosenWeapon(false); setModId(undefined); } : reset} type="button"><RotateCcw size={15} /> {preset ? "Choose another weapon" : "Start over"}</button>
+        </> : <section className="wb-step"><h2>{preset?.treeName}</h2><p>Pick a weapon to reveal its stat sheet, named abilities, and crafting costs. Your monster tree stays selected as you compare weapons.</p></section>}
+      </aside>
     </div>
   );
 }
 
-export default WeaponsBuilder;
+function TierRules({ tier, weapon }: { tier: MonsterTier; weapon: Weapon }) {
+  const variants = rulesForWeapon(tier, weapon.id, weapon.name);
+  return (
+    <details className="wb-tier-rules" open={tier.rank === 1}>
+      <summary>
+        <span>Tier {tier.rank} · {tier.rankName}</span>
+        <strong>{tier.name}</strong>
+        <ChevronDown size={16} />
+      </summary>
+      <RuleText text={tier.rules} />
+      {variants.map((variant) => (
+        <div className="wb-variant-rule" key={variant.label}>
+          {splitNamedAbilities(variant.rules).map((ability, index) => <div key={index}>
+            {ability.heading && <small>{ability.heading}</small>}
+            <RuleText text={ability.text} />
+          </div>)}
+        </div>
+      ))}
+    </details>
+  );
+}
+
+function ReferenceTable() {
+  const [query, setQuery] = useState("");
+  const [stage, setStage] = useState<"all" | Weapon["stage"]>("all");
+  const [kind, setKind] = useState<"all" | Weapon["kind"]>("all");
+  const [family, setFamily] = useState("all");
+  const [expanded, setExpanded] = useState<string | undefined>();
+
+  const filtered = useMemo(() => weapons.filter((weapon) => {
+    const propertyTerms = weapon.properties.flatMap((property) => [ruleName(property), ruleText(property)]);
+    const modTerms = weapon.mods.flatMap((id) => {
+      const item = mods.find((candidate) => candidate.id === id);
+      return item ? [item.name, modDescription(item)] : [];
+    });
+    const haystack = [weapon.name, weapon.familyName, weapon.damage, ...propertyTerms, ...modTerms].join(" ").toLowerCase();
+    return (!query || haystack.includes(query.toLowerCase()))
+      && (stage === "all" || weapon.stage === stage)
+      && (kind === "all" || weapon.kind === kind)
+      && (family === "all" || weapon.family === family);
+  }), [query, stage, kind, family]);
+
+  return (
+    <div className="wb-reference">
+      <div className="wb-filter-bar">
+        <label className="wb-search"><Search size={17} /><input aria-label="Search weapons" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search names, properties, mods…" /></label>
+        <select aria-label="Weapon stage" value={stage} onChange={(event) => setStage(event.target.value as typeof stage)}>
+          <option value="all">All stages</option><option value="basic">Basic</option><option value="advanced">Advanced</option>
+        </select>
+        <select aria-label="Weapon category" value={kind} onChange={(event) => setKind(event.target.value as typeof kind)}>
+          <option value="all">All categories</option><option value="melee">Melee</option><option value="ranged">Ranged</option><option value="focus">Spell focus</option>
+        </select>
+        <select aria-label="Weapon family" value={family} onChange={(event) => setFamily(event.target.value)}>
+          <option value="all">All families</option>
+          {basicWeapons.map((weapon) => <option value={weapon.family} key={weapon.family}>{weapon.familyName}</option>)}
+        </select>
+        <span className="wb-result-count">{filtered.length} {filtered.length === 1 ? "weapon" : "weapons"}</span>
+      </div>
+
+      <div className="wb-table-scroll">
+        <table className="wb-table">
+          <thead><tr><th>Weapon</th><th>Stage</th><th>Family</th><th>Damage</th><th>Cost</th><th>Properties</th><th aria-label="Expand" /></tr></thead>
+          <tbody>
+            {filtered.map((weapon) => (
+              <Fragment key={weapon.id}>
+                <tr className={expanded === weapon.id ? "is-expanded" : ""} onClick={() => setExpanded(expanded === weapon.id ? undefined : weapon.id)}>
+                  <td><strong>{weapon.name}</strong><small>{kindLabels[weapon.kind]}</small></td>
+                  <td><span className={`wb-stage wb-stage-${weapon.stage}`}>{weapon.stage}</span></td>
+                  <td>{weapon.familyName}</td><td>{weapon.damage}</td><td>{formatGold(weapon.cost)}</td>
+                  <td><div className="wb-table-properties">{weapon.properties.map((property) => <RulePill key={`${property.ruleId}-${JSON.stringify(property.values)}`} rule={property} />)}</div></td>
+                  <td><button className="wb-expand-button" type="button" aria-label={`Modifications for ${weapon.name}`} aria-expanded={expanded === weapon.id} onClick={(event) => { event.stopPropagation(); setExpanded(expanded === weapon.id ? undefined : weapon.id); }}><ChevronDown className="wb-row-chevron" size={17} /></button></td>
+                </tr>
+                {expanded === weapon.id && (
+                  <tr className="wb-expanded-row" key={`${weapon.id}-detail`}>
+                    <td colSpan={7}>
+                      <strong>Available modifications</strong>
+                      <div>{weapon.mods.map((id) => {
+                        const mod = mods.find((item) => item.id === id)!;
+                        return <RulePill rule={{ ...mod.rule, label: mod.name }} key={id} />;
+                      })}</div>
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {!filtered.length && <div className="wb-no-results"><Hammer size={26} /><strong>No weapons match those filters.</strong><button onClick={() => { setQuery(""); setStage("all"); setKind("all"); setFamily("all"); }}>Clear filters</button></div>}
+    </div>
+  );
+}
+
+export default function WeaponWorkbench({ initialView = "builder" }: WeaponWorkbenchProps) {
+  const [view, setView] = useState<View>(initialView);
+  const [preset, setPreset] = useState<TreeBuildPreset>();
+  const [invalidLink, setInvalidLink] = useState(false);
+  useEffect(() => {
+    const readLink = () => {
+      const selection = resolveTreeBuild(window.location.search);
+      setPreset(selection);
+      setInvalidLink(!selection && new URLSearchParams(window.location.search).has("tree"));
+      if (selection) setView("builder");
+    };
+    readLink();
+    window.addEventListener("popstate", readLink);
+    return () => window.removeEventListener("popstate", readLink);
+  }, []);
+  const clearPreset = () => {
+    const url = new URL(window.location.href);
+    ["monster", "tree", "tier"].forEach((key) => url.searchParams.delete(key));
+    window.history.replaceState(null, "", url);
+    setPreset(undefined);
+    setInvalidLink(false);
+  };
+  return (
+    <div className="weapon-workbench not-content">
+      <header className="wb-hero">
+        <div><span className="wb-eyebrow">The Mythic Age armory</span><h1>Forge a legend.</h1><p>Start with steel. Choose its form. Then see what it could become.</p></div>
+        <Swords aria-hidden="true" />
+      </header>
+      <nav className="wb-view-tabs" aria-label="Weapon tools">
+        <button className={view === "builder" ? "is-active" : ""} onClick={() => setView("builder")}><Sparkles size={17} /> Build a weapon</button>
+        <button className={view === "reference" ? "is-active" : ""} onClick={() => setView("reference")}><Search size={17} /> Weapon reference</button>
+      </nav>
+      {invalidLink && <p className="wb-selection-note">That monster tree link is not recognized. You can start a new build below.</p>}
+      {view === "builder" ? <Builder key={preset ? `${preset.monsterId}:${preset.treeName}:${preset.tier}` : "normal"} preset={preset} clearPreset={clearPreset} /> : <ReferenceTable />}
+    </div>
+  );
+}

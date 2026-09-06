@@ -2,47 +2,66 @@
 title: Hydra Weapons
 description: Hydra Weapon Information
 ---
+import { BaseFeatures, TreeSelector, TreeBranch, InfusionTier, WeaponVariant } from "../../../components/MonsterWeaponViewer.tsx";
+
 # Hydra Weapons
 
-## Base Features
-Weapons made from Hydras are sinewy writhing things, several tendrils hover around constantly in motion.
-Hydra weapons have the following properties
+<BaseFeatures>
+
+Weapons made from Hydras are sinewy writhing things, several tendrils hover around constantly in motion. Hydra weapons have the following properties:
 
 * ***Lashing Heads.*** Whenever you make an attack with this weapon, you may target up to one additional creature within sixty feet of you as a shadowy hydra's head lashes out from your weapon. You do not suffer disadvantage from being a ranged attack on this additional attack if the target is within five feet of you.
 * ***Regeneration.*** Whenever you regain hit points by spending hit dice, you may roll one additional hit die and regain that many hit points without spending a hit die.
 * If an ability from this weapon requires a saving throw the DC is 8 + twice your proficiency bonus.
 
-## Northern Swarm Tree
+</BaseFeatures>
 
-[Build with this tree](/weapons/builder/?monster=hydra&tree=northern-swarm)
+<TreeSelector client:load trees={["Northern Swarm", "Southern Regrowth"]}>
+<TreeBranch description="This weapon has a hoard of snapping heads reaching out from it, ready to harass your enemies.">
 
-This weapon has a hoard of snapping heads reaching out from it, ready to harass your enemies.
+<InfusionTier tier="minor" name="Myriad Neck" bonus="">
 
-### Minor Infusion - Myriad Neck
 ***Even More Heads.*** You may target one more creature with your Lashing Heads, your weapon's die size is reduced by two (1d4 becomes 1d3, 1d3 becomes 1d2).
 
 A Minor hydra weapon gains an additional ability based its weapon type.
 
-#### Shortbow & Doru
+<WeaponVariant label="Shortbow & Doru">
+
 ***Lurking Bite.*** Your additional attacks ignore cover.
 
-#### Longbow & Javelin
+</WeaponVariant>
+
+<WeaponVariant label="Longbow & Javelin">
+
 ***Greater Reach.*** Your additional head attacks have a range of 120 feet
 
-### Major- 101 Heads
+</WeaponVariant>
+
+</InfusionTier>
+
+<InfusionTier tier="major" name="101 Heads" bonus="+1">
+
 Your weapon gains a +1 to attack and damage rolls.
 
 ***Probably Too many Heads.*** You gain an additional snapping head attack
 
 A Major Hydra weapon improves upon its abilities based on its weapon type
 
-#### Shortbow & Doru
+<WeaponVariant label="Shortbow & Doru">
+
 ***Major Lurking Bite.*** Your additional attacks merely need to be able to draw a path to your target. If you do not have line of sight to the target you gain advantage on these attack rolls.
 
-#### Longbow & Javelin
-***Major Greater Reach.***  Your additional head attacks have a range of 300 feet and may grapple instead of their normal attack. They use your attack roll in place of an athletics check. A creature may also deal damage to a neck instead of escaping, the AC is equal to 10 + your proficency bonus, a neck has 5 times your proficiency bonus in hit points and vulnerability to fire and slashing damage.
+</WeaponVariant>
 
-### Apex Infusion - The Teeth, The Teeth, The Teeth
+<WeaponVariant label="Longbow & Javelin">
+
+***Major Greater Reach.*** Your additional head attacks have a range of 300 feet and may grapple instead of their normal attack. They use your attack roll in place of an athletics check. A creature may also deal damage to a neck instead of escaping, the AC is equal to 10 + your proficency bonus, a neck has 5 times your proficiency bonus in hit points and vulnerability to fire and slashing damage.
+
+</WeaponVariant>
+
+</InfusionTier>
+
+<InfusionTier tier="apex" name="The Teeth, The Teeth, The Teeth" bonus="+2">
 
 Your bow gains +2 to attack and damage rolls.
 
@@ -54,48 +73,78 @@ Your bow gains +2 to attack and damage rolls.
 
 An Apex Hydra weapon improves upon its abilities based on its weapon type
 
-#### Shortbow & Doru
+<WeaponVariant label="Shortbow & Doru">
+
 ***Apex Lurking Bite.*** Creatures struck by your lurking bite attack must make a wisdom saving throw or be frightened of you for one minute. They gain advantage on the saving throw if they can see you. A creature frightened this way can repeat the saving throw at the end of each of its turns ending the effect on a success. While frightened this way they have disadvantage on all attack rolls and ability checks even if they cannot see you.
 
-#### Longbow & Javelin
-***Apex Greater Reach.***  Your additional head attacks have a range of 600 feet, and any grappling heads gain additional hitpoints equal to your level. Finally, when a creature grappled by one of your heads begins its turns, roll your weapon damage, that creature takes damage equal to your result.
+</WeaponVariant>
 
-## Southern Regrowth Tree
+<WeaponVariant label="Longbow & Javelin">
 
-[Build with this tree](/weapons/builder/?monster=hydra&tree=southern-regrowth)
+***Apex Greater Reach.*** Your additional head attacks have a range of 600 feet, and any grappling heads gain additional hitpoints equal to your level. Finally, when a creature grappled by one of your heads begins its turns, roll your weapon damage, that creature takes damage equal to your result.
 
+</WeaponVariant>
 
-This weapon is sturdy and well crafted. Any nick, scratch or break in this bow is repaired in seconds.
+</InfusionTier>
 
-### Minor Infusion - Regrowth
+</TreeBranch>
+<TreeBranch description="This weapon is sturdy and well crafted. Any nick, scratch or break in this bow is repaired in seconds.">
+
+<InfusionTier tier="minor" name="Regrowth" bonus="">
 
 ***Life Drain.*** When your additional attack hits, you gain temporary hit points equal to your level
 
-#### Shortbow & Doru
+<WeaponVariant label="Shortbow & Doru">
 
 ***Vitality Drain.*** When your additional attack hits, you instead gain hit points equal to your level. Any hit points above your maximum that you would gain instead turn in to temporary hit points. These temporary hit points can stack up to twice your level.
 
-#### Longbow & Javelin
+</WeaponVariant>
+
+<WeaponVariant label="Longbow & Javelin">
 
 ***Tether.*** When you hit a creature with your additional attack, you can tether to it. If you do, whenever you take damage, the tethered creature takes the same amount of damage. The tethered creature can end the effect by moving 120 feet away from you, or taking an action to make a constitution saving throw, ending the effect on a success. Once you use this ability you must complete a short rest before using it again.
 
-### Major Infusion - Regeneration
+</WeaponVariant>
+
+</InfusionTier>
+
+<InfusionTier tier="major" name="Regeneration" bonus="+1">
 
 You gain a +1 to attack and damage rolls. You now gain temporary hitpoints equal to twice your level
 
-#### Shorbow & Doru
+<WeaponVariant label="Shortbow & Doru">
+
 ***Major Vitality Drain.*** Both the number of hit points and limit to temporary hit points are doubled.
 
-#### Longbow & Javelin
+</WeaponVariant>
+
+<WeaponVariant label="Longbow & Javelin">
+
 ***Major Tether.*** While tethered, you gain resistance to damage and advantage on constitution and wisdom saving throws. The tethered creature takes the damage before resistance is applied.
 
-### Apex Infusion - Vigor
+</WeaponVariant>
+
+</InfusionTier>
+
+<InfusionTier tier="apex" name="Vigor" bonus="+2">
+
 You gain a +2 to attack and damage rolls.
 
 ***Southern Vigor.*** While below half your hitpoints, any hit points or temporary hitpoints gained are doubled. Additionally while below half your hitpoints you gain resistance to all damage except slashing, fire, and force damage
 
-#### Shorbow & Doru
+<WeaponVariant label="Shortbow & Doru">
+
 ***Apex Vitality Drain.*** Whenever you would gain temporary hitpoints, you may choose to instead gain hit dice. You may do this a number of times equal to your constitution modifier. Once you have done so you need to take a long rest before regaining more hit dice.
 
-#### Longbow & Javelin
+</WeaponVariant>
+
+<WeaponVariant label="Longbow & Javelin">
+
 ***Apex Tether*** While tethered, you may spend an action to drain the life from the creature you are attached to. The target must make a constituion saving throw, taking 8d6 damage on a failed save, half on success. You gain temporary hitpoints equal to the damage dealt. If this kills the creture you regain one hit die and may immedeately transfer the tether to a creature within range of you that fails at a constitution saving throw.
+
+</WeaponVariant>
+
+</InfusionTier>
+
+</TreeBranch>
+</TreeSelector>

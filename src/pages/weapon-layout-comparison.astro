@@ -1,0 +1,31 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Content as PlainHydra } from '../content/docs/weapons/hydra-weapons.md';
+import { Content as CollapsedHydra } from '../archive/docs/weapons/hydra-weapons.mdx';
+---
+
+<StarlightPage frontmatter={{ title: 'Weapon documentation: side by side', template: 'splash', description: 'Compare the plain Hydra rules with the archived accordion layout.' }}>
+  <p>The same Hydra rules, two reading experiences. Scroll each pane independently. The MDX pane preserves the previous tabs and collapsed tiers; the Markdown pane keeps every rule visible.</p>
+  <p><a href="/weapons/hydra-weapons/">Open the canonical Hydra documentation</a></p>
+  <div class="comparison" data-pagefind-ignore>
+    <section aria-label="Plain Markdown comparison">
+      <h2>Plain Markdown · current</h2>
+      <p>Headings, continuous rules, and a direct link to build each tree.</p>
+      <div class="reading-pane" tabindex="0" aria-label="Plain Markdown rules"><PlainHydra /></div>
+    </section>
+    <section aria-label="Archived MDX comparison">
+      <h2>MDX · previous</h2>
+      <p>Two path tabs and six tier accordions. Four tiers start collapsed.</p>
+      <div class="reading-pane" tabindex="0" aria-label="Archived MDX rules"><CollapsedHydra /></div>
+    </section>
+  </div>
+</StarlightPage>
+
+<style>
+  .comparison { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
+  .comparison > section { min-width: 0; margin-top: 0 !important; }
+  .comparison h2 { font-size: 1.2rem; margin-top: 0; }
+  .comparison section > p { color: var(--sl-color-gray-2); font-size: .85rem; }
+  .reading-pane { height: 72vh; overflow: auto; padding: 1.25rem; border: 1px solid var(--sl-color-gray-5); border-radius: .4rem; }
+  @media (max-width: 760px) { .comparison { grid-template-columns: 1fr; } }
+</style>

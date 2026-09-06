@@ -17,7 +17,10 @@ export default defineConfig({
         { label: 'Campaigns', items: [{ autogenerate: { directory: 'campaigns' } }] },
         { label: 'Character Options', items: [{ autogenerate: { directory: 'resources' } }] },
         { label: 'Weapons', collapsed: true, items: [{ autogenerate: { directory: 'weapons' } }] },
-        { label: 'World', items: [{ autogenerate: { directory: 'world' } }] },
+        { label: 'World', items: [
+          { label: 'World timeline', link: '/world/timeline/' },
+          { label: 'Nations & maps', items: [{ autogenerate: { directory: 'world' } }] },
+        ] },
         { label: 'Misc', items: [{ autogenerate: { directory: 'misc' } }] },
       ],
     }),

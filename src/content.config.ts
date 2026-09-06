@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { file, glob } from 'astro/loaders';
 import { docsLoader } from '@astrojs/starlight/loaders';
 import { docsSchema } from '@astrojs/starlight/schema';
@@ -59,6 +60,16 @@ export const collections = {
 			/** Free-form session references, e.g. ["Session 12", "Session 13"]. */
 			sessions: z.array(z.string()).optional(),
 			tags: z.array(z.string()).optional(),
+		}),
+	}),
+	timeline: defineCollection({
+		loader: glob({ pattern: '**/*.md', base: './src/content/timeline' }),
+		schema: z.object({
+			title: z.string(), summary: z.string(), date: z.string(),
+			era: z.enum(['Undated history', 'The world in living memory']),
+			order: z.number(), regions: z.array(z.string()).min(1),
+			kind: z.enum(['Turning point', 'Conflict', 'Civilization']),
+			source: z.string().startsWith('/world/'), sourceLabel: z.string(),
 		}),
 	}),
 };
